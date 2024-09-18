@@ -1,13 +1,13 @@
 @extends('layouts.main')
-@section('title', 'Nampan')
+@section('title', 'Detail Nampan')
 @section('content')
     <div class="page-wrapper">
         <div class="content">
             <div class="page-header">
                 <div class="add-item d-flex">
                     <div class="page-title">
-                        <h4>Nampan Produk</h4>
-                        <h6>Kelola Nampan Produk Anda</h6>
+                        <h4>-- Nama Nampan --</h4>
+                        <h6>-- Jenis Nampan</h6>
                     </div>
                 </div>
                 <ul class="table-top-head">
@@ -42,6 +42,7 @@
                             <thead>
                                 <tr>
                                     <th>Jenis</th>
+                                    <th>Nampan</th>
                                     <th>Tanggal</th>
                                     <th class="no-sort">Action</th>
                                 </tr>
@@ -50,7 +51,10 @@
                                 @foreach ($nampan as $item)
                                     <tr>
                                         <td>
-                                            <a href="detail-nampan/{{ $item->jenis_id }}"> {{ $item->jenis->jenis }}</a>
+                                            <a href="detail-nampan/{{ $item->id }}"> {{ $item->jenis->jenis }}</a>
+                                        </td>
+                                        <td>
+                                            <a href="detail-nampan/{{ $item->id }}">{{ $item->nampan }}</a>
                                         </td>
                                         <td>{{ $item->tanggal }}</td>
                                         <td class="action-table-data">
@@ -94,25 +98,13 @@
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Nama Nampan</label>
-                                                            <input type="text" name="nampan" value="{{ $item->nampan }}"
-                                                                class="form-control">
+                                                            <input type="text" name="nampan"
+                                                                value="{{ $item->nampan }}" class="form-control">
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Tanggal</label>
                                                             <input type="date" name="tanggal"
                                                                 value="{{ $item->tanggal }}" class="form-control">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Status</label>
-                                                            <select class="select" name="status">
-                                                                <option>Pilih Status</option>
-                                                                <option value="1"
-                                                                    @if ($item->status == 1) selected="selected" @endif>
-                                                                    Aktif</option>
-                                                                <option value="2"
-                                                                    @if ($item->status == 2) selected="selected" @endif>
-                                                                    Tidak Aktif</option>
-                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -162,14 +154,6 @@
                         <div class="mb-3">
                             <label class="form-label">Tanggal</label>
                             <input type="date" name="tanggal" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Status</label>
-                            <select class="select" name="status">
-                                <option>Pilih Status</option>
-                                <option value="1"> Aktif</option>
-                                <option value="2"> Tidak Aktif</option>
-                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">

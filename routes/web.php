@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Pegawai\PegawaiController;
 use App\Http\Controllers\Produk\JenisController;
+use App\Http\Controllers\Produk\NampanController;
 use App\Http\Controllers\User\UserController;
 
 /*
@@ -40,6 +41,9 @@ Route::middleware('auth')->group(function () {
     Route::post('jenis', [JenisController::class, 'store']);
     Route::post('jenis/{id}', [JenisController::class, 'update']);
     Route::get('delete-jenis/{id}', [JenisController::class, 'delete']);
+
+    Route::get('nampan', [NampanController::class, 'index']);
+    Route::post('nampan', [NampanController::class, 'store']);
 
     Route::get('logout', [AuthController::class, 'logout']);
 });
