@@ -24,14 +24,14 @@
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Produk</h6>
                     <ul>
-                        <li class="@if (request()->route()->uri == 'category') active @endif"><a href="/category"><i
-                                    data-feather="box"></i><span>Type Product</span></a>
+                        <li class="@if (request()->route()->uri == 'jenis') active @endif"><a href="/jenis"><i
+                                    data-feather="tag"></i><span>Jenis Produk</span></a>
                         </li>
-                        <li class="@if (request()->route()->uri == 'condition') active @endif"><a href="/condition"><i
-                                    data-feather="box"></i><span>Condition</span></a>
+                        <li class="@if (request()->route()->uri == 'nampan') active @endif"><a href="/nampan"><i
+                                    data-feather="codesandbox"></i><span>Nampan</span></a>
                         </li>
-                        <li class="@if (request()->route()->uri == 'product') active @endif"><a href="/product"><i
-                                    data-feather="box"></i><span>Product</span></a>
+                        <li class="@if (request()->route()->uri == 'produk') active @endif"><a href="/produk"><i
+                                    data-feather="box"></i><span>Produk</span></a>
                         </li>
                     </ul>
                 </li>
