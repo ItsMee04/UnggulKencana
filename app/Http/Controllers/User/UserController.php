@@ -35,6 +35,6 @@ class UserController extends Controller
                 'password'  =>  Hash::make($request->password)
             ]);
 
-        return redirect('pegawai')->with('success-message', 'Data Success Di Simpan !');
+        return redirect('user')->with('success-message', 'Data Success Di Simpan !');
     }
 }

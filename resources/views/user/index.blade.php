@@ -47,7 +47,12 @@
                             <tbody>
                                 @foreach ($user as $item)
                                     <tr>
-                                        <td>{{ $item->pegawai->nip }}</td>
+                                        <td>
+                                            <div>
+                                                {{ $item->pegawai->nip }}
+                                                <span class="emp-team">{{ $item->pegawai->nama }}</span>
+                                            </div>
+                                        </td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->pegawai->jabatan->jabatan }}</td>
                                         <td>

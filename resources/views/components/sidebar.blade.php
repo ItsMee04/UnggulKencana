@@ -22,7 +22,7 @@
                     </ul>
                 </li>
                 <li class="submenu-open">
-                    <h6 class="submenu-hdr">Product</h6>
+                    <h6 class="submenu-hdr">Produk</h6>
                     <ul>
                         <li class="@if (request()->route()->uri == 'category') active @endif"><a href="/category"><i
                                     data-feather="box"></i><span>Type Product</span></a>
