@@ -41,6 +41,7 @@
                         <table class="table  datanew">
                             <thead>
                                 <tr>
+                                    <th>No.</th>
                                     <th>NIP</th>
                                     <th>Nama</th>
                                     <th>Jabatan</th>
@@ -51,6 +52,7 @@
                             <tbody>
                                 @foreach ($pegawai as $item)
                                     <tr>
+                                        <td>{{ $loop->iteration }}.</td>
                                         <td>{{ $item->nip }}</td>
                                         <td>
                                             <div class="userimgname">

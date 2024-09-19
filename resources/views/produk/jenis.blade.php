@@ -41,6 +41,7 @@
                         <table class="table  datanew">
                             <thead>
                                 <tr>
+                                    <th>No.</th>
                                     <th>Jenis</th>
                                     <th>Status</th>
                                     <th class="no-sort">Action</th>
@@ -49,6 +50,7 @@
                             <tbody>
                                 @foreach ($jenis as $item)
                                     <tr>
+                                        <td>{{ $loop->iteration }}.</td>
                                         <td>
                                             <div class="userimgname">
                                                 @if ($item->icon != null)

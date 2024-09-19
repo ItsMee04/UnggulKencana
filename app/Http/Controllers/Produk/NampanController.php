@@ -24,6 +24,7 @@ class NampanController extends Controller
         ];
 
         $credentials = $request->validate([
+            'jenis'         => 'required',
             'nampan'        => 'required',
             'tanggal'       => 'required',
             'status'        => 'required'
@@ -45,5 +46,44 @@ class NampanController extends Controller
         ]);
 
         return redirect('nampan')->with('success-message', 'Data Success Disimpan !');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $messages = [
+            'required' => ':attribute wajib di isi !!!',
+        ];
+
+        $credentials = $request->validate([
+            'jenis'         => 'required',
+            'nampan'        => 'required',
+            'tanggal'       => 'required',
+            'status'        => 'required'
+        ], $messages);
+
+        if ($request->jenis == 'Pilih Jenis Produk') {
+            return redirect('nampan')->with('errors-message', 'Jenis wajib di isi !!!');
+        }
+
+        if ($request->status == 'Pilih Status') {
+            return redirect('nampan')->with('errors-message', 'Status wajib di isi !!!');
+        }
+
+        $updateNampan = Nampan::where('id', $id)
+            ->update([
+                'jenis_id'  =>  $request->jenis,
+                'nampan'    =>  $request->nampan,
+                'tanggal'   =>  $request->tanggal,
+                'status'    =>  $request->status,
+            ]);
+
+        return redirect('nampan')->with('success-message', 'Data Success Diupdate !');
+    }
+
+    public function delete($id)
+    {
+        Nampan::where('id', $id)->delete();
+
+        return redirect('nampan')->with('success-message', 'Data Success Dihapus !');
     }
 }

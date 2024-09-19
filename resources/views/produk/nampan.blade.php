@@ -41,7 +41,9 @@
                         <table class="table  datanew">
                             <thead>
                                 <tr>
-                                    <th>Jenis</th>
+                                    <th>No.</th>
+                                    <th>Nampan #</th>
+                                    <th>Jenis </th>
                                     <th>Tanggal</th>
                                     <th class="no-sort">Action</th>
                                 </tr>
@@ -49,9 +51,11 @@
                             <tbody>
                                 @foreach ($nampan as $item)
                                     <tr>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>
-                                            <a href="detail-nampan/{{ $item->jenis_id }}"> {{ $item->jenis->jenis }}</a>
+                                            <a href="detail-nampan/{{ $item->id }}"> {{ $item->nampan }}</a>
                                         </td>
+                                        <td>{{ $item->jenis->jenis }}</td>
                                         <td>{{ $item->tanggal }}</td>
                                         <td class="action-table-data">
                                             <div class="edit-delete-action">
@@ -60,7 +64,7 @@
                                                     <i data-feather="edit" class="feather-edit"></i>
                                                 </a>
                                                 <a class="me-2 p-2"
-                                                    onclick="confirm_modal('delete-jenis/{{ $item->id }}');"
+                                                    onclick="confirm_modal('delete-nampan/{{ $item->id }}');"
                                                     data-bs-toggle="modal" data-bs-target="#modal_delete">
                                                     <i data-feather="trash-2" class="feather-trash-2"></i>
                                                 </a>
@@ -94,8 +98,8 @@
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Nama Nampan</label>
-                                                            <input type="text" name="nampan" value="{{ $item->nampan }}"
-                                                                class="form-control">
+                                                            <input type="text" name="nampan"
+                                                                value="{{ $item->nampan }}" class="form-control">
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Tanggal</label>

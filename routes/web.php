@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Pegawai\PegawaiController;
 use App\Http\Controllers\Produk\JenisController;
 use App\Http\Controllers\Produk\NampanController;
+use App\Http\Controllers\Produk\ProdukController;
 use App\Http\Controllers\User\UserController;
 
 /*
@@ -44,6 +45,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('nampan', [NampanController::class, 'index']);
     Route::post('nampan', [NampanController::class, 'store']);
+    Route::post('nampan/{id}', [NampanController::class, 'update']);
+    Route::get('delete-nampan/{id}', [NampanController::class, 'delete']);
+
+    Route::get('produk', [ProdukController::class, 'index']);
 
     Route::get('logout', [AuthController::class, 'logout']);
 });

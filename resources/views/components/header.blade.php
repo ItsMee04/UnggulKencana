@@ -201,7 +201,7 @@
             <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
                 <span class="user-info">
                     <span class="user-letter">
-                        <img src="{{ asset('assets') }}/img/profiles/avator1.jpg" alt class="img-fluid">
+                        <img src="{{ asset('storage/Avatar/' . Session::get('avatar')) }}" alt class="img-fluid">
                     </span>
                     <span class="user-detail">
                         <span class="user-name">{{ Session::get('name') }}</span>

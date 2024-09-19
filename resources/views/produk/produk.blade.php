@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Detail Nampan')
+@section('title', 'Produk')
 @section('content')
     <div class="page-wrapper">
         <div class="content">
@@ -23,7 +23,7 @@
                 </ul>
                 <div class="page-btn">
                     <a href="#" class="btn btn-added" data-bs-toggle="modal" data-bs-target="#addEmployee"><i
-                            data-feather="plus-circle" class="me-2"></i> Tambah Nampan Produk</a>
+                            data-feather="plus-circle" class="me-2"></i> Tambah Produk</a>
                 </div>
             </div>
 
@@ -41,15 +41,18 @@
                         <table class="table  datanew">
                             <thead>
                                 <tr>
-                                    <th>Jenis</th>
+                                    <th>No.</th>
+                                    <th>Kode Produk</th>
                                     <th>Nampan</th>
-                                    <th>Tanggal</th>
+                                    <th>Berat</th>
+                                    <th>Harga</th>
                                     <th class="no-sort">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($nampan as $item)
+                                @foreach ($produk as $item)
                                     <tr>
+                                        <td>{{ $loop->iteration }}.</td>
                                         <td>
                                             <a href="detail-nampan/{{ $item->id }}"> {{ $item->jenis->jenis }}</a>
                                         </td>

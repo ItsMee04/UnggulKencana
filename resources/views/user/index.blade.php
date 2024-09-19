@@ -37,6 +37,7 @@
                         <table class="table  datanew">
                             <thead>
                                 <tr>
+                                    <th>No.</th>
                                     <th>NIP</th>
                                     <th>Email</th>
                                     <th>Jabatan</th>
@@ -47,6 +48,7 @@
                             <tbody>
                                 @foreach ($user as $item)
                                     <tr>
+                                        <td>{{ $loop->iteration }}.</td>
                                         <td>
                                             <div>
                                                 {{ $item->pegawai->nip }}
@@ -96,8 +98,8 @@
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Email</label>
-                                                            <input type="text" name="email" value="{{ $item->email }}"
-                                                                class="form-control" readonly>
+                                                            <input type="text" name="email"
+                                                                value="{{ $item->email }}" class="form-control" readonly>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Password</label>
