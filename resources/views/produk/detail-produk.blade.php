@@ -6,8 +6,8 @@
             <div class="page-header">
                 <div class="add-item d-flex">
                     <div class="page-title">
-                        <h4>Produk</h4>
-                        <h6>Kelola Produk Anda</h6>
+                        <h4>{{ $nampan->nampan }}</h4>
+                        <h6>{{ $jenis->jenis }}</h6>
                     </div>
                 </div>
                 <ul class="table-top-head">
@@ -21,52 +21,34 @@
                                 data-feather="chevron-up" class="feather-chevron-up"></i></a>
                     </li>
                 </ul>
-                {{-- <div class="page-btn">
+                <div class="page-btn">
                     <a href="#" class="btn btn-added" data-bs-toggle="modal" data-bs-target="#addEmployee"><i
                             data-feather="plus-circle" class="me-2"></i> Tambah Produk</a>
-                </div> --}}
+                </div>
             </div>
 
-            <div class="card table-list-card">
-                <div class="card-body pb-0">
-                    <div class="table-top">
-                        <div class="input-blocks search-set mb-0">
-                            <div class="search-input">
-                                <a href class="btn btn-searchset"><i data-feather="search" class="feather-search"></i></a>
+            <div class="col-md-12">
+                <div class="pos-categories tabs_wrapper">
+                    <div class="pos-products">
+                        <div class="row">
+                            <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3">
+                                <div class="product-info default-cover card">
+                                    <a href="javascript:void(0);" class="img-bg">
+                                        <img src="assets/img/products/pos-product-01.png" alt="Products" />
+                                    </a>
+                                    <h6 class="cat-name">
+                                        <a href="javascript:void(0);">Mobiles</a>
+                                    </h6>
+                                    <h6 class="product-name">
+                                        <a href="javascript:void(0);">IPhone 14 64GB</a>
+                                    </h6>
+                                    <div class="d-flex align-items-center justify-content-between price">
+                                        <span>30 Pcs</span>
+                                        <p>$15800</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="table-responsive">
-                        <table class="table  datanew">
-                            <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Nampan #</th>
-                                    <th>Jenis </th>
-                                    <th class="no-sort">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($nampan as $item)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>
-                                            <a href="produk/{{ $item->id }}"> {{ $item->nampan }}</a>
-                                        </td>
-                                        <td>{{ $item->jenis->jenis }}</td>
-                                        <td class="action-table-data">
-                                            <div class="edit-delete-action">
-                                                <a class="me-2 edit-icon  p-2" data-bs-effect="effect-sign"
-                                                    data-bs-toggle="modal" href="#modaldetail{{ $item->id }}">
-                                                    <i data-feather="eye" class="feather-eye"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
@@ -74,7 +56,7 @@
         </div>
     </div>
 
-    {{-- <div class="modal fade" id="addEmployee">
+    <div class="modal fade" id="addEmployee">
         <div class="modal-dialog modal-dialog-centered text-center" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
@@ -88,7 +70,7 @@
                             <label class="form-label">Jenis Produk</label>
                             <select class="select" name="jenis">
                                 <option>Pilih Jenis Produk</option>
-                                @foreach ($jenis as $itemjenis)
+                                @foreach ($jeniss as $itemjenis)
                                     <option value="{{ $itemjenis->id }}">
                                         {{ $itemjenis->jenis }}</option>
                                 @endforeach
@@ -111,7 +93,7 @@
                 </form>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <!-- Modal Popup untuk delete-->
     <div class="modal custom-modal fade" id="modal_delete">

@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::get('delete-nampan/{id}', [NampanController::class, 'delete']);
 
     Route::get('produk', [ProdukController::class, 'index']);
+    Route::get('produk/{id}', [ProdukController::class, 'show']);
 
     Route::get('logout', [AuthController::class, 'logout']);
 });
