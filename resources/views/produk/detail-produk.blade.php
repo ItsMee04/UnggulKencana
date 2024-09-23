@@ -27,32 +27,82 @@
                 </div>
             </div>
 
-            <div class="col-md-12">
-                <div class="pos-categories tabs_wrapper">
-                    <div class="pos-products">
-                        <div class="row">
-                            <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3">
-                                <div class="product-info default-cover card">
-                                    <a href="javascript:void(0);" class="img-bg">
-                                        <img src="assets/img/products/pos-product-01.png" alt="Products" />
-                                    </a>
-                                    <h6 class="cat-name">
-                                        <a href="javascript:void(0);">Mobiles</a>
-                                    </h6>
-                                    <h6 class="product-name">
-                                        <a href="javascript:void(0);">IPhone 14 64GB</a>
-                                    </h6>
-                                    <div class="d-flex align-items-center justify-content-between price">
-                                        <span>30 Pcs</span>
-                                        <p>$15800</p>
-                                    </div>
-                                </div>
+            <div class="card table-list-card">
+                <div class="card-body">
+                    <div class="table-top">
+                        <div class="search-set">
+                            <div class="search-input">
+                                <a href="javascript:void(0);" class="btn btn-searchset"><i data-feather="search"
+                                        class="feather-search"></i></a>
                             </div>
                         </div>
                     </div>
+
+                    <div class="table-responsive product-list">
+                        <table class="table datanew">
+                            <thead>
+                                <tr>
+                                    <th class="no-sort">
+                                        <label class="checkboxs">
+                                            <input type="checkbox" id="select-all">
+                                            <span class="checkmarks"></span>
+                                        </label>
+                                    </th>
+                                    <th>No.</th>
+                                    <th>Kode Produk</th>
+                                    <th>Nama</th>
+                                    <th>Berat</th>
+                                    <th>Karat</th>
+                                    <th>Harga</th>
+                                    <th class="no-sort">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($produk as $item)
+                                    <tr>
+                                        <td>
+                                            <label class="checkboxs">
+                                                <input type="checkbox">
+                                                <span class="checkmarks"></span>
+                                            </label>
+                                        </td>
+                                        <td>{{ $loop->iteration }}.</td>
+                                        <td>{{ $item->kodeproduk }} </td>
+                                        <td>
+                                            <div class="productimgname">
+                                                <a href="javascript:void(0);" class="product-img stock-img">
+                                                    <img src="{{ asset('storage/Image/' . $item->image) }}" alt="product">
+                                                </a>
+                                                <a href="javascript:void(0);">{{ $item->nama }} </a>
+                                            </div>
+                                        </td>
+                                        <td>{{ $item->berat }} / grams</td>
+                                        <td>{{ $item->karat }}</td>
+                                        <td>{{ 'Rp.' . ' ' . number_format($item->hargajual) }}</td>
+                                        <td class="action-table-data">
+                                            <div class="edit-delete-action">
+                                                <a class="me-2 edit-icon  p-2" data-bs-effect="effect-sign"
+                                                    data-bs-toggle="modal" href="#modaldetail{{ $item->id }}">
+                                                    <i data-feather="eye" class="feather-eye"></i>
+                                                </a>
+                                                <a class="me-2 p-2" data-bs-effect="effect-sign" data-bs-toggle="modal"
+                                                    href="#modaledit{{ $item->id }}">
+                                                    <i data-feather="edit" class="feather-edit"></i>
+                                                </a>
+                                                <a class="me-2 p-2"
+                                                    onclick="confirm_modal('delete-pegawai/{{ $item->id }}');"
+                                                    data-bs-toggle="modal" data-bs-target="#modal_delete">
+                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -63,15 +113,15 @@
                     <h4 class="modal-title">Tambah Produk</h4><button aria-label="Close" class="btn-close"
                         data-bs-dismiss="modal"></button>
                 </div>
-                <form action="produk" method="POST" enctype="multipart/form-data">
+                <form action="/produk" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body text-start">
                         <div class="mb-3">
                             <label class="form-label">Kode Produk</label>
                             <input type="text" name="kodeproduk" class="form-control" value="{{ $kodeproduk }}"
                                 readonly>
-                            <input type="hidden" name="jenis" class="form-control" value="{{ $jenis->jenis }}">
-                            <input type="hidden" name="nampan" class="form-control" value="{{ $nampan->nampan }}">
+                            <input type="hidden" name="jenis" class="form-control" value="{{ $jenis->id }}">
+                            <input type="hidden" name="nampan" class="form-control" value="{{ $nampan->id }}">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Nama</label>
@@ -110,9 +160,9 @@
                                 </div>
                             </div>
                             <div class="col-6 mb-3">
-                                <label class="form-label">Avatar</label>
+                                <label class="form-label">Image</label>
                                 <div class="col-md-12">
-                                    <input id="image" type="file" class="form-control" name="avatar">
+                                    <input id="image" type="file" class="form-control" name="image">
                                 </div>
                             </div>
                         </div>

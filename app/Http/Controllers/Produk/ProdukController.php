@@ -64,5 +64,29 @@ class ProdukController extends Controller
         if ($request->status == 'Pilih Status') {
             return redirect('nampan')->with('errors-message', 'Status wajib di isi !!!');
         }
+
+        $image = "";
+        if ($request->file('image')) {
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $image = $request->kodeproduk . '.' . $extension;
+            $request->file('image')->storeAs('Image', $image);
+            $request['image'] = $image;
+        }
+
+        Produk::create([
+            'kodeproduk'        =>  $request->kodeproduk,
+            'jenis_id'          =>  $request->jenis,
+            'nampan_id'         =>  $request->nampan,
+            'nama'              =>  $request->nama,
+            'harga_jual'        =>  $request->hargajual,
+            'harga_beli'        =>  $request->hargabeli,
+            'keterangan'        =>  $request->keterangan,
+            'berat'             =>  $request->berat,
+            'karat'             =>  $request->karat,
+            'image'             =>  $image,
+            'status'            =>  $request->status
+        ]);
+
+        return redirect('produk/' . $request->nampan)->with('success-message', 'Data Success Disimpan !');
     }
 }
