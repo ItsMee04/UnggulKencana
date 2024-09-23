@@ -7,6 +7,7 @@ use App\Models\Jenis;
 use App\Models\Nampan;
 use App\Models\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class ProdukController extends Controller
 {
@@ -21,6 +22,7 @@ class ProdukController extends Controller
         $produk = Produk::where('nampan_id', $id)->get();
 
         $nampan = Nampan::where('id', $id)->first();
+        $nampans = Nampan::where('id', $id)->get();
 
         $jenis_id = $nampan->first()->jenis_id;
 
@@ -28,7 +30,39 @@ class ProdukController extends Controller
 
         $jeniss  = Jenis::where('id', $jenis_id)->get();
 
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersNumber = strlen($characters);
+        $codeLength = 12;
 
-        return view('produk.detail-produk', ['produk' => $produk, 'nampan' => $nampan, 'jenis' => $jenis, 'jeniss' => $jeniss]);
+        $code = '';
+
+        while (strlen($code) < 12) {
+            $position = rand(0, $charactersNumber - 1);
+            $character = $characters[$position];
+            $code = $code . $character;
+        }
+
+        return view('produk.detail-produk', ['produk' => $produk, 'nampan' => $nampan, 'nampans' => $nampans, 'jenis' => $jenis, 'jeniss' => $jeniss, 'kodeproduk' => $code]);
+    }
+
+    public function store(Request $request)
+    {
+        $messages = [
+            'required' => ':attribute wajib di isi !!!',
+        ];
+
+        $credentials = $request->validate([
+            'nama'          => 'required',
+            'berat'         => 'required',
+            'karat'         => 'required',
+            'hargajual'     => 'required',
+            'hargabeli'     => 'required',
+            'keterangan'    => 'required',
+            'status'        => 'required'
+        ], $messages);
+
+        if ($request->status == 'Pilih Status') {
+            return redirect('nampan')->with('errors-message', 'Status wajib di isi !!!');
+        }
     }
 }

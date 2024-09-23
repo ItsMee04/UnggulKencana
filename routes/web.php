@@ -8,6 +8,7 @@ use App\Http\Controllers\Produk\JenisController;
 use App\Http\Controllers\Produk\NampanController;
 use App\Http\Controllers\Produk\ProdukController;
 use App\Http\Controllers\User\UserController;
+use App\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('produk', [ProdukController::class, 'index']);
     Route::get('produk/{id}', [ProdukController::class, 'show']);
+    Route::post('produk', [ProdukController::class, 'store']);
 
     Route::get('logout', [AuthController::class, 'logout']);
 });

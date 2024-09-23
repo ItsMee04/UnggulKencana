@@ -60,29 +60,69 @@
         <div class="modal-dialog modal-dialog-centered text-center" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
-                    <h4 class="modal-title">Tambah Nampan Produk</h4><button aria-label="Close" class="btn-close"
+                    <h4 class="modal-title">Tambah Produk</h4><button aria-label="Close" class="btn-close"
                         data-bs-dismiss="modal"></button>
                 </div>
-                <form action="nampan" method="POST" enctype="multipart/form-data">
+                <form action="produk" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body text-start">
                         <div class="mb-3">
-                            <label class="form-label">Jenis Produk</label>
-                            <select class="select" name="jenis">
-                                <option>Pilih Jenis Produk</option>
-                                @foreach ($jeniss as $itemjenis)
-                                    <option value="{{ $itemjenis->id }}">
-                                        {{ $itemjenis->jenis }}</option>
-                                @endforeach
+                            <label class="form-label">Kode Produk</label>
+                            <input type="text" name="kodeproduk" class="form-control" value="{{ $kodeproduk }}"
+                                readonly>
+                            <input type="hidden" name="jenis" class="form-control" value="{{ $jenis->jenis }}">
+                            <input type="hidden" name="nampan" class="form-control" value="{{ $nampan->nampan }}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nama</label>
+                            <input type="text" name="nama" class="form-control">
+                        </div>
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <label class="form-label">Berat</label>
+                                <input type="text" name="berat" class="form-control">
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label">Karat</label>
+                                <input type="text" name="karat" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <label class="form-label">Harga Jual</label>
+                                <input type="text" name="hargajual" class="form-control">
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label">Harga Beli</label>
+                                <input type="text" name="hargabeli" class="form-control">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Keterangan</label>
+                            <textarea class="form-control" rows="4" name="keterangan"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 new-employee-field">
+                                <label class="form-label">Avatar</label>
+                                <div class="profile-pic-upload">
+                                    <div class="profile-pic active-profile preview" id="preview">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label">Avatar</label>
+                                <div class="col-md-12">
+                                    <input id="image" type="file" class="form-control" name="avatar">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Status</label>
+                            <select class="select" name="status">
+                                <option>Pilih Status</option>
+                                <option value="1"> Aktif</option>
+                                <option value="2"> Tidak Aktif</option>
                             </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Nama Nampan</label>
-                            <input type="text" name="nampan" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Tanggal</label>
-                            <input type="date" name="tanggal" class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -119,5 +159,23 @@
             });
             document.getElementById('delete_link').setAttribute('href', delete_url);
         }
+
+        const imgInput = document.getElementById('image')
+        const previewImage = document.getElementById('preview')
+
+        imgInput.addEventListener("change", () => {
+            const file = imgInput.files[0]
+            const reader = new FileReader;
+
+            reader.addEventListener("load", () => {
+                previewImage.innerHTML = ""
+                const img = document.createElement("img")
+                img.src = reader.result
+
+                previewImage.appendChild(img)
+            })
+
+            reader.readAsDataURL(file)
+        })
     </script>
 @endsection
