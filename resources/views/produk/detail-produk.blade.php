@@ -67,7 +67,10 @@
                                             </label>
                                         </td>
                                         <td>{{ $loop->iteration }}.</td>
-                                        <td>{{ $item->kodeproduk }} </td>
+                                        <td>
+                                            {!! DNS2D::getBarcodeSVG($item->kodeproduk, 'QRCODE', 2, 2) !!}
+                                            <span>{{ $item->kodeproduk }}</span>
+                                        </td>
                                         <td>
                                             <div class="productimgname">
                                                 <a href="javascript:void(0);" class="product-img stock-img">
@@ -90,13 +93,193 @@
                                                     <i data-feather="edit" class="feather-edit"></i>
                                                 </a>
                                                 <a class="me-2 p-2"
-                                                    onclick="confirm_modal('delete-pegawai/{{ $item->id }}');"
+                                                    onclick="confirm_modal('/delete-produk/{{ $item->id }}');"
                                                     data-bs-toggle="modal" data-bs-target="#modal_delete">
                                                     <i data-feather="trash-2" class="feather-trash-2"></i>
                                                 </a>
                                             </div>
                                         </td>
                                     </tr>
+
+                                    <!-- DETAIL PRODUK -->
+                                    <div class="modal fade" id="modaldetail{{ $item->id }}">
+                                        <div class="modal-dialog modal-dialog-centered text-center" role="document">
+                                            <div class="modal-content modal-content-demo">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Detail Produk</h4><button aria-label="Close"
+                                                        class="btn-close" data-bs-dismiss="modal"></button>
+                                                </div>
+                                                <form method="POST" enctype="multipart/form-data">
+                                                    <div class="modal-body text-start">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Kode Produk</label>
+                                                            <input type="text" value="{{ $item->kodeproduk }}"
+                                                                class="form-control" readonly>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Nama</label>
+                                                            <input type="text" value="{{ $item->nama }}"
+                                                                class="form-control" readonly>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6 mb-3">
+                                                                <label class="form-label">Berat</label>
+                                                                <input type="text" value="{{ $item->berat }}"
+                                                                    class="form-control" readonly>
+                                                            </div>
+                                                            <div class="col-md-6 mb-3">
+                                                                <label class="form-label">Karat</label>
+                                                                <input type="text" value="{{ $item->karat }}"
+                                                                    class="form-control" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6 mb-3">
+                                                                <label class="form-label">Harga Jual</label>
+                                                                <input type="text" value="{{ $item->harga_jual }}"
+                                                                    class="form-control" readonly>
+                                                            </div>
+                                                            <div class="col-md-6 mb-3">
+                                                                <label class="form-label">Harga Beli</label>
+                                                                <input type="text" value="{{ $item->harga_beli }}"
+                                                                    class="form-control" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Keterangan</label>
+                                                            <textarea class="form-control" readonly>{{ $item->keterangan }}</textarea>
+                                                        </div>
+                                                        <div class=" mb-3">
+                                                            <div class="new-employee-field">
+                                                                <label class="form-label">Image</label>
+                                                                <div class="profile-pic-upload">
+                                                                    <div class="profile-pic active-profile">
+                                                                        @if ($item->image != null)
+                                                                            <img src="{{ asset('storage/Image/' . $item->image) }}"
+                                                                                alt="avatar">
+                                                                        @else
+                                                                            <img src="{{ asset('assets') }}/img/notfound/notfound.jpg"
+                                                                                alt="avatar">
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Status</label>
+                                                            @if ($item->status == 1)
+                                                                <input type="text" value="Aktif" class="form-control"
+                                                                    readonly>
+                                                            @else
+                                                                <input type="text" value="Tidak Aktif"
+                                                                    class="form-control" readonly>
+                                                            @endif
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-cancel"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- EDIT PRODUK -->
+                                    <div class="modal fade" id="modaledit{{ $item->id }}">
+                                        <div class="modal-dialog modal-dialog-centered text-center" role="document">
+                                            <div class="modal-content modal-content-demo">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Detail Produk</h4><button aria-label="Close"
+                                                        class="btn-close" data-bs-dismiss="modal"></button>
+                                                </div>
+                                                <form action="/produk/{{ $item->id }}" method="POST"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="modal-body text-start">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Kode Produk</label>
+                                                            <input type="text" value="{{ $item->kodeproduk }}"
+                                                                class="form-control" readonly>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Nama</label>
+                                                            <input type="text" value="{{ $item->nama }}"
+                                                                class="form-control" name="nama">
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6 mb-3">
+                                                                <label class="form-label">Berat</label>
+                                                                <input type="text" value="{{ $item->berat }}"
+                                                                    class="form-control" name="berat">
+                                                            </div>
+                                                            <div class="col-md-6 mb-3">
+                                                                <label class="form-label">Karat</label>
+                                                                <input type="text" value="{{ $item->karat }}"
+                                                                    class="form-control" name="karat">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6 mb-3">
+                                                                <label class="form-label">Harga Jual</label>
+                                                                <input type="text" value="{{ $item->harga_jual }}"
+                                                                    class="form-control" name="hargajual">
+                                                            </div>
+                                                            <div class="col-md-6 mb-3">
+                                                                <label class="form-label">Harga Beli</label>
+                                                                <input type="text" value="{{ $item->harga_beli }}"
+                                                                    class="form-control" name="hargabeli">
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Keterangan</label>
+                                                            <textarea class="form-control" name="keterangan">{{ $item->keterangan }}</textarea>
+                                                        </div>
+                                                        <div class=" mb-3">
+                                                            <div class="new-employee-field">
+                                                                <label class="form-label">Image</label>
+                                                                <div class="profile-pic-upload">
+                                                                    <div class="profile-pic active-profile preview2"
+                                                                        id="preview2">
+                                                                        @if ($item->image != null)
+                                                                            <img src="{{ asset('storage/Image/' . $item->image) }}"
+                                                                                alt="avatar">
+                                                                        @else
+                                                                            <img src="{{ asset('assets') }}/img/notfound/notfound.jpg"
+                                                                                alt="avatar">
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <input type="file" class="form-control" name="image"
+                                                                    id="image2">
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Status</label>
+                                                            <select class="select" name="status">
+                                                                <option>Pilih Status</option>
+                                                                <option value="1"
+                                                                    @if ($item->status == 1) selected="selected" @endif>
+                                                                    Aktif</option>
+                                                                <option value="2"
+                                                                    @if ($item->status == 2) selected="selected" @endif>
+                                                                    Tidak Aktif</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-cancel"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Save
+                                                            changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endforeach
                             </tbody>
                         </table>

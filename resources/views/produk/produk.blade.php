@@ -57,8 +57,7 @@
                                         <td>{{ $item->jenis->jenis }}</td>
                                         <td class="action-table-data">
                                             <div class="edit-delete-action">
-                                                <a class="me-2 edit-icon  p-2" data-bs-effect="effect-sign"
-                                                    data-bs-toggle="modal" href="#modaldetail{{ $item->id }}">
+                                                <a href="produk/{{ $item->id }}" class="me-2 edit-icon  p-2">
                                                     <i data-feather="eye" class="feather-eye"></i>
                                                 </a>
                                             </div>
