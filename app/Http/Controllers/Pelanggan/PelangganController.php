@@ -10,7 +10,7 @@ class PelangganController extends Controller
 {
     public function index()
     {
-        $pelanggan = Pelanggan::all();
+        $pelanggan = Pelanggan::where('status', 1)->get();
 
         $nomorpelanggan = Pelanggan::latest()->first();
         $kode = "CUST#-";
@@ -20,7 +20,7 @@ class PelangganController extends Controller
             $serialnumber = "000001";
             $kodepelanggan = $kode . $tahun . $serialnumber;
         } else {
-            $serialnumber = substr($nomorpelanggan->kodepelanggan, 6, 6) + 1;
+            $serialnumber = substr($nomorpelanggan->kodepelanggan, 12, 12) + 1;
             $serialnumber = str_pad($serialnumber, 6, "0", STR_PAD_LEFT);
 
             $kodepelanggan = $kode . $tahun . $serialnumber;
@@ -100,7 +100,9 @@ class PelangganController extends Controller
 
     public function delete($id)
     {
-        Pelanggan::where('id', $id)->delete();
+        Pelanggan::where('id', $id)->update([
+            'status'    =>  2,
+        ]);
 
         return redirect('pelanggan')->with('success-message', 'Data Success Di Hapus !');
     }
