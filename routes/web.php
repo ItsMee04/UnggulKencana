@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Pegawai\PegawaiController;
+use App\Http\Controllers\Pelanggan\PelangganController;
 use App\Http\Controllers\Produk\JenisController;
 use App\Http\Controllers\Produk\NampanController;
 use App\Http\Controllers\Produk\ProdukController;
@@ -54,6 +55,11 @@ Route::middleware('auth')->group(function () {
     Route::post('produk', [ProdukController::class, 'store']);
     Route::post('produk/{id}', [ProdukController::class, 'update']);
     Route::get('delete-produk/{id}', [ProdukController::class, 'delete']);
+
+    Route::get('pelanggan', [PelangganController::class, 'index']);
+    Route::post('pelanggan', [PelangganController::class, 'store']);
+    Route::post('pelanggan/{id}', [PelangganController::class, 'update']);
+    Route::get('delete-pelanggan/{id}', [PelangganController::class, 'delete']);
 
     Route::get('logout', [AuthController::class, 'logout']);
 });

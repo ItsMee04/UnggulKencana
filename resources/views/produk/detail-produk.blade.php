@@ -25,6 +25,10 @@
                     <a href="#" class="btn btn-added" data-bs-toggle="modal" data-bs-target="#addEmployee"><i
                             data-feather="plus-circle" class="me-2"></i> Tambah Produk</a>
                 </div>
+                <div class="page-btn">
+                    <a href="#" class="btn btn-added btn-secondary" onclick="history.back()"><i
+                            data-feather="arrow-left" class="me-2"></i>Kembali Ke Produk</a>
+                </div>
             </div>
 
             <div class="card table-list-card">
