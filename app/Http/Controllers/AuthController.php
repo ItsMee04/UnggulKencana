@@ -46,6 +46,21 @@ class AuthController extends Controller
                     Session::put('role', $role);
 
                     return redirect('dashboard')->with('success-message', 'Login Berhasil');
+                } elseif (Auth::user()->role_id == 2) {
+                    $employee = Pegawai::where('id', Auth::user()->pegawai_id)->first()->nama;
+                    $avatar   = Pegawai::where('id', Auth::user()->pegawai_id)->first()->avatar;
+
+                    $idprofession   = Pegawai::where('id', Auth::user()->pegawai_id)->first()->jabatan_id;
+                    $jabatan     = Jabatan::where('id', $idprofession)->first()->jabatan;
+
+                    $role   = Role::where('id', Auth::user()->role_id)->first()->role;
+
+                    Session::put('name', $employee);
+                    Session::put('avatar', $avatar);
+                    Session::put('profession', $jabatan);
+                    Session::put('role', $role);
+
+                    return redirect('dashboard')->with('success-message', 'Login Berhasil');
                 }
             }
         }
