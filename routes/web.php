@@ -8,6 +8,7 @@ use App\Http\Controllers\Pelanggan\PelangganController;
 use App\Http\Controllers\Produk\JenisController;
 use App\Http\Controllers\Produk\NampanController;
 use App\Http\Controllers\Produk\ProdukController;
+use App\Http\Controllers\Supplier\SupplierController;
 use App\Http\Controllers\User\UserController;
 use App\Models\Role;
 
@@ -60,6 +61,12 @@ Route::middleware('auth')->group(function () {
     Route::post('pelanggan', [PelangganController::class, 'store']);
     Route::post('pelanggan/{id}', [PelangganController::class, 'update']);
     Route::get('delete-pelanggan/{id}', [PelangganController::class, 'delete']);
+
+    Route::get('supplier', [SupplierController::class, 'index']);
+    Route::post('supplier', [SupplierController::class, 'store']);
+    Route::post('supplier/{id}', [SupplierController::class, 'update']);
+    Route::get('delete-supplier/{id}', [SupplierController::class, 'delete']);
+
 
     Route::get('logout', [AuthController::class, 'logout']);
 });

@@ -38,7 +38,7 @@
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Pelanggan & Supplier</h6>
                     <ul>
-                        <li class="@if (request()->route()->uri == 'pelanggan') active @endif"><a href="pelanggan"><i
+                        <li class="@if (request()->route()->uri == 'pelanggan') active @endif"><a href="/pelanggan"><i
                                     data-feather="user"></i><span>Pelanggan</span></a></li>
                         <li class="@if (request()->route()->uri == 'supplier') active @endif"><a href="supplier"><i
                                     data-feather="users"></i><span>Suppliers</span></a></li>
