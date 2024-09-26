@@ -223,8 +223,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                @foreach ($produk as $item)
-                                    <div class="tab_content" data-tab="{{ $item->jenis_id }}">
+                                @foreach ($jenisProduk as $itemJenis)
+                                    <div class="tab_content" data-tab="{{ $itemJenis->jenis_id }}">
                                         <div class="row">
                                             @foreach ($produk as $item)
                                                 <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">

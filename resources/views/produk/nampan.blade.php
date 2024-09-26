@@ -53,7 +53,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>
-                                            <a href="detail-nampan/{{ $item->id }}"> {{ $item->nampan }}</a>
+                                            {{ $item->nampan }}
                                         </td>
                                         <td>{{ $item->jenis->jenis }}</td>
                                         <td>{{ $item->tanggal }}</td>
