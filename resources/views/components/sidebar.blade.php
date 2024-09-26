@@ -45,10 +45,10 @@
                     </ul>
                 </li>
                 <li class="submenu-open">
-                    <h6 class="submenu-hdr">HRM</h6>
+                    <h6 class="submenu-hdr">Transaksi</h6>
                     <ul>
-                        <li class="@if (request()->route()->uri == 'employee') active @endif"><a href="/employee"><i
-                                    data-feather="user"></i><span>Employees</span></a>
+                        <li class="@if (request()->route()->uri == 'pos') active @endif"><a href="/pos"><i
+                                    data-feather="hard-drive"></i><span>POS</span></a>
                         </li>
                         <li><a href="department-grid.html"><i data-feather="users"></i><span>Departments</span></a>
                         </li>
