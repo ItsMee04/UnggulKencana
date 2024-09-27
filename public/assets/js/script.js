@@ -956,12 +956,13 @@ $(document).ready(function(){
 	$('ul.tabs li').click(function(){
 		var $this = $(this);
 		var $theTab = $(this).attr('id');
+		let token   = $("meta[name='csrf-token']").attr("content");
 		console.log($theTab);
 		if($this.hasClass('active')){
 		  // do nothing
-		} else{
+		} else {
 		  $this.closest('.tabs_wrapper').find('ul.tabs li, .tabs_container .tab_content').removeClass('active');
-		  $('.tabs_container .tab_content[data-tab="'+$theTab+'"], ul.tabs li[id="'+$theTab+'"]').addClass('active');
+			$('.tabs_container .tab_content[data-tab="' + $theTab + '"], ul.tabs li[id="' + $theTab + '"]').addClass('active');
 		}
 		
 	});

@@ -49,203 +49,28 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-                                            <div class="product-info default-cover card">
-                                                <a href="javascript:void(0);" class="img-bg">
-                                                    <img src="assets/img/products/pos-product-02.png" alt="Products">
-                                                    <span><i data-feather="check" class="feather-16"></i></span>
-                                                </a>
-                                                <h6 class="cat-name"><a href="javascript:void(0);">Computer</a>
-                                                </h6>
-                                                <h6 class="product-name"><a href="javascript:void(0);">MacBook
-                                                        Pro</a></h6>
-                                                <div class="d-flex align-items-center justify-content-between price">
-                                                    <span>140 Pcs</span>
-                                                    <p>$1000</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-                                            <div class="product-info default-cover card">
-                                                <a href="javascript:void(0);" class="img-bg">
-                                                    <img src="assets/img/products/pos-product-03.png" alt="Products">
-                                                    <span><i data-feather="check" class="feather-16"></i></span>
-                                                </a>
-                                                <h6 class="cat-name"><a href="javascript:void(0);">Watches</a>
-                                                </h6>
-                                                <h6 class="product-name"><a href="javascript:void(0);">Rolex
-                                                        Tribute V3</a></h6>
-                                                <div class="d-flex align-items-center justify-content-between price">
-                                                    <span>220 Pcs</span>
-                                                    <p>$6800</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-                                            <div class="product-info default-cover card">
-                                                <a href="javascript:void(0);" class="img-bg">
-                                                    <img src="assets/img/products/pos-product-04.png" alt="Products">
-                                                    <span><i data-feather="check" class="feather-16"></i></span>
-                                                </a>
-                                                <h6 class="cat-name"><a href="javascript:void(0);">Shoes</a></h6>
-                                                <h6 class="product-name"><a href="javascript:void(0);">Red Nike
-                                                        Angelo</a></h6>
-                                                <div class="d-flex align-items-center justify-content-between price">
-                                                    <span>78 Pcs</span>
-                                                    <p>$7800</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-                                            <div class="product-info default-cover card">
-                                                <a href="javascript:void(0);" class="img-bg">
-                                                    <img src="assets/img/products/pos-product-05.png" alt="Products">
-                                                    <span><i data-feather="check" class="feather-16"></i></span>
-                                                </a>
-                                                <h6 class="cat-name"><a href="javascript:void(0);">Headphones</a>
-                                                </h6>
-                                                <h6 class="product-name"><a href="javascript:void(0);">Airpod
-                                                        2</a></h6>
-                                                <div class="d-flex align-items-center justify-content-between price">
-                                                    <span>47 Pcs</span>
-                                                    <p>$5478</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-                                            <div class="product-info default-cover card">
-                                                <a href="javascript:void(0);" class="img-bg">
-                                                    <img src="assets/img/products/pos-product-06.png" alt="Products">
-                                                    <span><i data-feather="check" class="feather-16"></i></span>
-                                                </a>
-                                                <h6 class="cat-name"><a href="javascript:void(0);">Shoes</a></h6>
-                                                <h6 class="product-name"><a href="javascript:void(0);">Blue White
-                                                        OGR</a></h6>
-                                                <div class="d-flex align-items-center justify-content-between price">
-                                                    <span>54 Pcs</span>
-                                                    <p>$987</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-                                            <div class="product-info default-cover card">
-                                                <a href="javascript:void(0);" class="img-bg">
-                                                    <img src="assets/img/products/pos-product-07.png" alt="Products">
-                                                    <span><i data-feather="check" class="feather-16"></i></span>
-                                                </a>
-                                                <h6 class="cat-name"><a href="javascript:void(0);">Laptop</a></h6>
-                                                <h6 class="product-name"><a href="javascript:void(0);">IdeaPad
-                                                        Slim 5 Gen 7</a></h6>
-                                                <div class="d-flex align-items-center justify-content-between price">
-                                                    <span>74 Pcs</span>
-                                                    <p>$1454</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-                                            <div class="product-info default-cover card">
-                                                <a href="javascript:void(0);" class="img-bg">
-                                                    <img src="assets/img/products/pos-product-08.png" alt="Products">
-                                                    <span><i data-feather="check" class="feather-16"></i></span>
-                                                </a>
-                                                <h6 class="cat-name"><a href="javascript:void(0);">Headphones</a>
-                                                </h6>
-                                                <h6 class="product-name"><a href="javascript:void(0);">SWAGME</a>
-                                                </h6>
-                                                <div class="d-flex align-items-center justify-content-between price">
-                                                    <span>14 Pcs</span>
-                                                    <p>$6587</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-                                            <div class="product-info default-cover card">
-                                                <a href="javascript:void(0);" class="img-bg">
-                                                    <img src="assets/img/products/pos-product-09.png" alt="Products">
-                                                    <span><i data-feather="check" class="feather-16"></i></span>
-                                                </a>
-                                                <h6 class="cat-name"><a href="javascript:void(0);">Watches</a>
-                                                </h6>
-                                                <h6 class="product-name"><a href="javascript:void(0);">Timex Black
-                                                        SIlver</a></h6>
-                                                <div class="d-flex align-items-center justify-content-between price">
-                                                    <span>24 Pcs</span>
-                                                    <p>$1457</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-                                            <div class="product-info default-cover card">
-                                                <a href="javascript:void(0);" class="img-bg">
-                                                    <img src="assets/img/products/pos-product-10.png" alt="Products">
-                                                    <span><i data-feather="check" class="feather-16"></i></span>
-                                                </a>
-                                                <h6 class="cat-name"><a href="javascript:void(0);">Computer</a>
-                                                </h6>
-                                                <h6 class="product-name"><a href="javascript:void(0);">Tablet 1.02
-                                                        inch</a></h6>
-                                                <div class="d-flex align-items-center justify-content-between price">
-                                                    <span>14 Pcs</span>
-                                                    <p>$4744</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-                                            <div class="product-info default-cover card">
-                                                <a href="javascript:void(0);" class="img-bg">
-                                                    <img src="assets/img/products/pos-product-11.png" alt="Products">
-                                                    <span><i data-feather="check" class="feather-16"></i></span>
-                                                </a>
-                                                <h6 class="cat-name"><a href="javascript:void(0);">Watches</a>
-                                                </h6>
-                                                <h6 class="product-name"><a href="javascript:void(0);">Fossil Pair
-                                                        Of 3 in 1 </a></h6>
-                                                <div class="d-flex align-items-center justify-content-between price">
-                                                    <span>40 Pcs</span>
-                                                    <p>$789</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-                                            <div class="product-info default-cover card">
-                                                <a href="javascript:void(0);" class="img-bg">
-                                                    <img src="assets/img/products/pos-product-18.png" alt="Products">
-                                                    <span><i data-feather="check" class="feather-16"></i></span>
-                                                </a>
-                                                <h6 class="cat-name"><a href="javascript:void(0);">Shoes</a></h6>
-                                                <h6 class="product-name"><a href="javascript:void(0);">Green Nike
-                                                        Fe</a></h6>
-                                                <div class="d-flex align-items-center justify-content-between price">
-                                                    <span>78 Pcs</span>
-                                                    <p>$7847</p>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
-                                @foreach ($jenisProduk as $itemJenis)
-                                    <div class="tab_content" data-tab="{{ $itemJenis->jenis_id }}">
+                                @foreach ($produk as $item)
+                                    <div class="tab_content" data-tab="{{ $item->jenis_id }}">
                                         <div class="row">
-                                            @foreach ($produk as $item)
-                                                <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-                                                    <div class="product-info default-cover card">
-                                                        <a href="javascript:void(0);" class="img-bg">
-                                                            <img src="{{ asset('storage/Image/' . $item->image) }}"
-                                                                alt="Products">
-                                                        </a>
-                                                        <h6 class="cat-name"><a
-                                                                href="javascript:void(0);">{{ $item->nama }}</a>
-                                                        </h6>
-                                                        <h6 class="product-name"><a href="javascript:void(0);">Airpod
-                                                                2</a></h6>
-                                                        <div
-                                                            class="d-flex align-items-center justify-content-between price">
-                                                            <span>47 Pcs</span>
-                                                            <p>$5478</p>
-                                                        </div>
+                                            <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
+                                                <div class="product-info default-cover card">
+                                                    <a href="javascript:void(0);" class="img-bg">
+                                                        <img src="{{ asset('storage/Image/' . $item->image) }}"
+                                                            alt="Products">
+                                                    </a>
+                                                    <h6 class="cat-name"><a
+                                                            href="javascript:void(0);">{{ $item->jenis->jenis }}</a>
+                                                    </h6>
+                                                    <h6 class="product-name"><a
+                                                            href="javascript:void(0);">{{ $item->nama }}</a></h6>
+                                                    <div class="d-flex align-items-center justify-content-between price">
+                                                        <span>{{ $item->berat }} gram</span>
+                                                        <p>{{ 'Rp.' . $item->harga_jual }}</p>
                                                     </div>
                                                 </div>
-                                            @endforeach
+                                            </div>
                                         </div>
                                     </div>
                                 @endforeach

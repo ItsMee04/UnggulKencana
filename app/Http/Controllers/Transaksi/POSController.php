@@ -21,10 +21,10 @@ class POSController extends Controller
             ->groupBy('jenis_id')
             ->get();
 
-        return view('transaksi.pos', [
-            'jenis'         => $jenis,
-            'produk'        => $produk,
-            'jenisProduk'   =>  $jenisProduk
-        ]);
+        return view('transaksi.pos', compact(
+            'jenis',
+            'produk',
+            'jenisProduk'
+        ));
     }
 }
