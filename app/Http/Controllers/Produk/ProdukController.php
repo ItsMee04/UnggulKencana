@@ -25,7 +25,7 @@ class ProdukController extends Controller
         $nampan = Nampan::where('id', $id)->first();
         $nampans = Nampan::where('id', $id)->get();
 
-        $jenis_id = $nampan->first()->jenis_id;
+        $jenis_id = $nampan->jenis_id;
 
         $jenis  = Jenis::where('id', $jenis_id)->first();
 
@@ -48,6 +48,7 @@ class ProdukController extends Controller
 
     public function store(Request $request)
     {
+
         $messages = [
             'required' => ':attribute wajib di isi !!!',
             'mimes'    => ':attribute format wajib menggunakan PNG/JPG'

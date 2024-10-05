@@ -10,7 +10,7 @@
     <meta name="author" content="Dreamguys - Bootstrap Admin Template">
     <meta name="robots" content="noindex, nofollow">
     <title>Unggul Kencana | @yield('title')</title>
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets') }}/img/favicon.png">
 
     <link rel="stylesheet" href="{{ asset('assets') }}/css/bootstrap.min.css">
