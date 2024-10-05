@@ -69,7 +69,7 @@ Route::middleware('auth')->group(function () {
     Route::get('delete-supplier/{id}', [SupplierController::class, 'delete']);
 
     Route::get('pos', [POSController::class, 'index']);
-    Route::get('pos/getItem/{id}', [POSController::class, 'getItem']);
+    Route::get('pos/{id}', [POSController::class, 'getItem']);
 
     Route::get('logout', [AuthController::class, 'logout']);
 });

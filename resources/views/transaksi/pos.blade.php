@@ -31,49 +31,8 @@
                                 <h5 class="mb-3">Produk</h5>
                             </div>
                             <div class="tabs_container">
-                                <div class="tab_content active" data-tab="all">
-                                    <div class="row">
-                                        <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3">
-                                            <div class="product-info default-cover card">
-                                                <a href="javascript:void(0);" class="img-bg">
-                                                    <img src="assets/img/products/pos-product-01.png" alt="Products">
-                                                    <span><i data-feather="check" class="feather-16"></i></span>
-                                                </a>
-                                                <h6 class="cat-name"><a href="javascript:void(0);">Mobiles</a>
-                                                </h6>
-                                                <h6 class="product-name"><a href="javascript:void(0);">IPhone 14
-                                                        64GB</a></h6>
-                                                <div class="d-flex align-items-center justify-content-between price">
-                                                    <span>30 Pcs</span>
-                                                    <p>$15800</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="row" id="daftarProduk">
                                 </div>
-                                @foreach ($produk as $item)
-                                    <div class="tab_content" data-tab="{{ $item->jenis_id }}">
-                                        <div class="row">
-                                            <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-                                                <div class="product-info default-cover card">
-                                                    <a href="javascript:void(0);" class="img-bg">
-                                                        <img src="{{ asset('storage/Image/' . $item->image) }}"
-                                                            alt="Products">
-                                                    </a>
-                                                    <h6 class="cat-name"><a
-                                                            href="javascript:void(0);">{{ $item->jenis->jenis }}</a>
-                                                    </h6>
-                                                    <h6 class="product-name"><a
-                                                            href="javascript:void(0);">{{ $item->nama }}</a></h6>
-                                                    <div class="d-flex align-items-center justify-content-between price">
-                                                        <span>{{ $item->berat }} gram</span>
-                                                        <p>{{ 'Rp.' . $item->harga_jual }}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -386,4 +345,6 @@
             </div>
         </div>
     </div>
+
+
 @endsection

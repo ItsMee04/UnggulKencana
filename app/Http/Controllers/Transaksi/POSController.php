@@ -27,4 +27,11 @@ class POSController extends Controller
             'jenisProduk'
         ));
     }
+
+    public function getItem($id)
+    {
+        $produk = Produk::where('jenis_id', $id)->get();
+
+        return response()->json($produk);
+    }
 }
