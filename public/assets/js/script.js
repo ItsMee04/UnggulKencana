@@ -989,7 +989,7 @@ $(document).ready(function () {
 								<div class="product-info default-cover card">
 									<a href="javascript:void(0);" class="img-bg">
 										<img src="/storage/Image/${item.image}"
-											alt="Products" width="100px" />
+											alt="Products" width="100px" height="100px"/>
 									</a>
 									<h6 class="cat-name">
 										<a href="javascript:void(0);">JENIS : ${item.jenis.jenis}</a>
