@@ -32,6 +32,9 @@ class POSController extends Controller
     {
         $produk = Produk::where('jenis_id', $id)->get();
 
-        return response()->json($produk);
+        foreach ($produk as $item) {
+            $item['harga_jual'] = number_format($item['harga_jual'], 0, ',', '.');
+        }
+        return $produk->loadMissing('jenis');
     }
 }

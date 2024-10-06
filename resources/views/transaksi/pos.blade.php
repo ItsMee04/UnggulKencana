@@ -9,13 +9,6 @@
                         <h5>Jenis Perhiasan</h5>
                         <p>Pilih Dari Jenis Di Bawah Ini</p>
                         <ul class="tabs owl-carousel pos-category">
-                            <li id="all">
-                                <a href="javascript:void(0);">
-                                    <img src="assets/img/categories/category-01.png" alt="Categories">
-                                </a>
-                                <h6><a href="javascript:void(0);">All Categories</a></h6>
-                                <span>80 Items</span>
-                            </li>
                             @foreach ($jenis as $item)
                                 <li id="{{ $item->id }}">
                                     <a href="javascript:void(0);">

@@ -958,7 +958,7 @@ $(document).ready(function () {
         var $this = $(this);
         var $theTab = $(this).attr("id");
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr("content");
-        console.log($theTab);
+
         if ($this.hasClass("active")) {
             // do nothing
         } else {
@@ -981,28 +981,32 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function (data) {
                     $("#daftarProduk").empty();
+
                     $.each(data, function (key, item) {
                         $("#daftarProduk").append(
                             `
 							<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3">
-                                <div class="product-info default-cover card">
-                                    <a href="javascript:void(0);" class="img-bg">
-                                        <img src="/storage/Image/${item.image}"
-                                            alt="Products" />
-                                    </a>
-                                    <h6 class="cat-name">
-                                        <a href="javascript:void(0);">${item.jenis_id}</a>
-                                	</h6>
-                                    <h6 class="product-name">
-                                        <a href="javascript:void(0);">${item.nama}</a>
-                                    </h6>
-                                    <div
-                                        class="d-flex align-items-center justify-content-between price">
-                                        <span>30 Pcs</span>
-                                    	<p>${item.harga_jual}</p>
-                                	</div>
-                            	</div>
-                            </div>
+								<div class="product-info default-cover card">
+									<a href="javascript:void(0);" class="img-bg">
+										<img src="/storage/Image/${item.image}"
+											alt="Products" width="100px" />
+									</a>
+									<h6 class="cat-name">
+										<a href="javascript:void(0);">JENIS : ${item.jenis.jenis}</a>
+									</h6>
+									<h6 class="product-name">
+										<a href="javascript:void(0);">NAMA : ${item.nama}</a>
+									</h6>
+									<div
+										class="d-flex align-items-center justify-content-between price">
+										<span>BERAT : ${item.berat} /gram</span>
+										<p>HARGA: Rp. ${item.harga_jual}</p>
+									</div>
+									<div class="align-items-center justify-content-between price text-center">
+                                        <a href="addcart/${item.kodeproduk}" class="btn btn-sm btn-outline-primary ms-1">Add To Cart</a>
+                                    </div>
+								</div>
+							</div>
 						`
                         );
                     });
