@@ -47,6 +47,9 @@
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Transaksi</h6>
                     <ul>
+                        <li class="@if (request()->route()->uri == 'diskon') active @endif"><a href="/diskon"><i
+                                    data-feather="tag"></i><span>Diskon</span></a>
+                        </li>
                         <li class="@if (request()->route()->uri == 'pos') active @endif"><a href="/pos"><i
                                     data-feather="hard-drive"></i><span>POS</span></a>
                         </li>

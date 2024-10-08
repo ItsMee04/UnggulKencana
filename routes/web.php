@@ -9,6 +9,7 @@ use App\Http\Controllers\Produk\JenisController;
 use App\Http\Controllers\Produk\NampanController;
 use App\Http\Controllers\Produk\ProdukController;
 use App\Http\Controllers\Supplier\SupplierController;
+use App\Http\Controllers\Transaksi\DiskonController;
 use App\Http\Controllers\Transaksi\POSController;
 use App\Http\Controllers\User\UserController;
 use App\Models\Role;
@@ -67,6 +68,11 @@ Route::middleware('auth')->group(function () {
     Route::post('supplier', [SupplierController::class, 'store']);
     Route::post('supplier/{id}', [SupplierController::class, 'update']);
     Route::get('delete-supplier/{id}', [SupplierController::class, 'delete']);
+
+    Route::get('diskon', [DiskonController::class, 'index']);
+    Route::post('diskon', [DiskonController::class, 'store']);
+    Route::post('diskon/{id}', [DiskonController::class, 'update']);
+    Route::get('delete-diskon/{id}', [DiskonController::class, 'delete']);
 
     Route::get('pos', [POSController::class, 'index']);
     Route::get('pos/{id}', [POSController::class, 'getItem']);

@@ -7,6 +7,10 @@ use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Keranjang;
+use App\Models\Pelanggan;
+use App\Models\Transaksi;
+use Illuminate\Support\Facades\Auth;
 
 class POSController extends Controller
 {
@@ -14,6 +18,37 @@ class POSController extends Controller
     {
         $jenis = Jenis::where('status', 1)->get();
         $produk = Produk::where('status', 1)->get();
+        $pelanggan = Pelanggan::where('status', 1)->get();
+        $nomorpelanggan = Pelanggan::latest()->first();
+        $kode = "CUST#-";
+        $tahun = date('Y');
+
+        if ($nomorpelanggan == null) {
+            $serialnumber = "000001";
+            $kodepelanggan = $kode . $tahun . $serialnumber;
+        } else {
+            $serialnumber = substr($nomorpelanggan->kodepelanggan, 12, 12) + 1;
+            $serialnumber = str_pad($serialnumber, 6, "0", STR_PAD_LEFT);
+
+            $kodepelanggan = $kode . $tahun . $serialnumber;
+        }
+
+        $id = "T-";
+        $tahun = date('Y');
+
+        $idTransaction = Transaksi::latest()->first();
+
+        $keranjang = Keranjang::where('status', 1)->where('users', Auth::user()->id)->get();
+
+        if ($idTransaction == null) {
+            $nourut = "000001";
+            $idtransaksi = $id . $tahun . $nourut;
+        } else {
+            $nourut = substr($idTransaction->transaction_id, 6, 6) + 1;
+            $nourut = str_pad($nourut, 6, "0", STR_PAD_LEFT);
+
+            $idtransaksi = $id . $tahun . $nourut;
+        }
 
         $jenisProduk = DB::table('produk')
             ->select('jenis_id')
@@ -21,11 +56,15 @@ class POSController extends Controller
             ->groupBy('jenis_id')
             ->get();
 
-        return view('transaksi.pos', compact(
-            'jenis',
-            'produk',
-            'jenisProduk'
-        ));
+        return view('transaksi.pos', [
+            'jenis' => $jenis,
+            'produk' => $produk,
+            'jenisProduk' => $jenisProduk,
+            'pelanggan' => $pelanggan,
+            'kodepelanggan' => $kodepelanggan,
+            'kodetransaksi' => $idtransaksi,
+            'keranjang'     => $keranjang,
+        ]);
     }
 
     public function getItem($id)

@@ -954,6 +954,8 @@ $(document).ready(function () {
         }
     }
 
+    
+
     $("ul.tabs li").click(function () {
         var $this = $(this);
         var $theTab = $(this).attr("id");
@@ -981,7 +983,6 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function (data) {
                     $("#daftarProduk").empty();
-
                     $.each(data, function (key, item) {
                         $("#daftarProduk").append(
                             `
@@ -1003,7 +1004,7 @@ $(document).ready(function () {
 										<p>HARGA: Rp. ${item.harga_jual}</p>
 									</div>
 									<div class="align-items-center justify-content-between price text-center">
-                                        <a href="addcart/${item.kodeproduk}" class="btn btn-sm btn-outline-primary ms-1">Add To Cart</a>
+                                        <button id="addCart" data-id="${item.id}" class="btn btn-sm btn-outline-primary ms-1">Add To Cart</button>
                                     </div>
 								</div>
 							</div>
