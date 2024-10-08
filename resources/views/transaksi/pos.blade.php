@@ -85,12 +85,10 @@
                                         <div class="input-block">
                                             <label>Discount</label>
                                             <select class="select">
-                                                <option>10%</option>
-                                                <option>10%</option>
-                                                <option>15%</option>
-                                                <option>20%</option>
-                                                <option>25%</option>
-                                                <option>30%</option>
+                                                <option>Pilih Diskon</option>
+                                                @foreach ($diskon as $item)
+                                                    <option value="{{ $item->diskon }}"> {{ $item->nama }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -184,5 +182,4 @@
         </div>
     </div>
 
-    <script src="{{ asset('assets') }}/js/pos.js" type="text/javascript"></script>
 @endsection

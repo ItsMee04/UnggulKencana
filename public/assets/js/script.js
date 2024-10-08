@@ -1004,7 +1004,7 @@ $(document).ready(function () {
 										<p>HARGA: Rp. ${item.harga_jual}</p>
 									</div>
 									<div class="align-items-center justify-content-between price text-center">
-                                        <button id="addCart" data-id="${item.id}" class="btn btn-sm btn-outline-primary ms-1">Add To Cart</button>
+                                        <button data-id="${item.id}" class="btn btn-sm btn-outline-primary ms-1 addCart">Add To Cart</button>
                                     </div>
 								</div>
 							</div>
@@ -1013,8 +1013,23 @@ $(document).ready(function () {
                     });
                 },
             });
+
+            $(document).on('click', '.addCart', function() {
+                var produkID = $(this).data('id');
+                let selectedProducts = [];
+                // Cek jika produk sudah ada
+                if (!selectedProducts.some(p => p.id === produkID)) {
+                    selectedProducts.push({ id: produkID });
+                    localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
+                    alert(`${produkID} ditambahkan!`);
+                } else {
+                    alert(`${produkID} sudah dipilih.`);
+                }
+                
+            });
         }
     });
+    
 
     $("body").append('<div class="sidebar-filter"></div>');
     //theme Settings
@@ -2119,3 +2134,5 @@ $(document).ready(function () {
     });
     /* card with close button */
 });
+
+

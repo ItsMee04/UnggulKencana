@@ -7,6 +7,7 @@ use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Diskon;
 use App\Models\Keranjang;
 use App\Models\Pelanggan;
 use App\Models\Transaksi;
@@ -50,6 +51,8 @@ class POSController extends Controller
             $idtransaksi = $id . $tahun . $nourut;
         }
 
+        $diskon = Diskon::where('status', 1)->get();
+
         $jenisProduk = DB::table('produk')
             ->select('jenis_id')
             ->where('status', 1)
@@ -57,13 +60,14 @@ class POSController extends Controller
             ->get();
 
         return view('transaksi.pos', [
-            'jenis' => $jenis,
-            'produk' => $produk,
-            'jenisProduk' => $jenisProduk,
-            'pelanggan' => $pelanggan,
-            'kodepelanggan' => $kodepelanggan,
-            'kodetransaksi' => $idtransaksi,
-            'keranjang'     => $keranjang,
+            'jenis'         =>  $jenis,
+            'produk'        =>  $produk,
+            'jenisProduk'   =>  $jenisProduk,
+            'pelanggan'     =>  $pelanggan,
+            'kodepelanggan' =>  $kodepelanggan,
+            'kodetransaksi' =>  $idtransaksi,
+            'keranjang'     =>  $keranjang,
+            'diskon'        =>  $diskon,
         ]);
     }
 
