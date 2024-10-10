@@ -59,23 +59,8 @@
                                 <a href="javascript:void(0);" class="d-flex align-items-center text-danger"><span
                                         class="me-1"><i data-feather="x" class="feather-16"></i></span>Clear all</a>
                             </div>
-                            <div class="product-wrap">
-                                @foreach ($keranjang as $item)
-                                    <div class="product-list d-flex align-items-center justify-content-between">
-                                        <div class="d-flex align-items-center product-info" data-bs-toggle="modal"
-                                            data-bs-target="#products">
-                                            <a href="javascript:void(0);" class="img-bg">
-                                                <img src="{{ asset('storage/Image/' . $item->produk->image) }}"
-                                                    alt="Products">
-                                            </a>
-                                            <div class="info">
-                                                <span>{{ $item->produk->kodeproduk }}</span>
-                                                <h6><a href="javascript:void(0);">{{ $item->produk->nama }}</a></h6>
-                                                <p>Rp.{{ number_format($item->produk->harga_jual) }}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
+                            <div class="product-wrap" id="keranjang">
+
                             </div>
                         </div>
                         <div class="block-section">
