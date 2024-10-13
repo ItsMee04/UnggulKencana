@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('nampan', function (Blueprint $table) {
+        Schema::create('nampan_produk', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('jenis_id');
-            $table->string('nampan', 100);
-            $table->integer('status');
+            $table->unsignedBigInteger('nampan_id');
+            $table->unsignedBigInteger('produk_id');
+            $table->date('tanggal');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('jenis_id')->references('id')->on('jenis_produk')->onDelete('cascade');
+            $table->foreign('nampan_id')->references('id')->on('nampan')->onDelete('cascade');
+            $table->foreign('produk_id')->references('id')->on('produk')->onDelete('cascade');
         });
     }
 
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('nampan');
+        Schema::dropIfExists('nampan_produk');
     }
 };

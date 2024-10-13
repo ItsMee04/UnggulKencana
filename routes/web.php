@@ -49,9 +49,12 @@ Route::middleware('auth')->group(function () {
     Route::get('delete-jenis/{id}', [JenisController::class, 'delete']);
 
     Route::get('nampan', [NampanController::class, 'index']);
+    Route::post('produkNampan/{id}', [NampanController::class, 'storeNampan']);
     Route::post('nampan', [NampanController::class, 'store']);
+    Route::get('nampan/{id}', [NampanController::class, 'show']);
     Route::post('nampan/{id}', [NampanController::class, 'update']);
     Route::get('delete-nampan/{id}', [NampanController::class, 'delete']);
+    Route::get('delete-nampan-produk/{id}', [NampanController::class, 'deleteNampan']);
 
     Route::get('produk', [ProdukController::class, 'index']);
     Route::get('produk/{id}', [ProdukController::class, 'show']);

@@ -44,7 +44,6 @@
                                     <th>No.</th>
                                     <th>Nampan #</th>
                                     <th>Jenis </th>
-                                    <th>Tanggal</th>
                                     <th class="no-sort">Action</th>
                                 </tr>
                             </thead>
@@ -52,11 +51,8 @@
                                 @foreach ($nampan as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>
-                                            {{ $item->nampan }}
-                                        </td>
+                                        <td><a href="nampan/{{ $item->id }}"> {{ $item->nampan }} </a></td>
                                         <td>{{ $item->jenis->jenis }}</td>
-                                        <td>{{ $item->tanggal }}</td>
                                         <td class="action-table-data">
                                             <div class="edit-delete-action">
                                                 <a class="me-2 p-2" data-bs-effect="effect-sign" data-bs-toggle="modal"
@@ -100,11 +96,6 @@
                                                             <label class="form-label">Nama Nampan</label>
                                                             <input type="text" name="nampan"
                                                                 value="{{ $item->nampan }}" class="form-control">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Tanggal</label>
-                                                            <input type="date" name="tanggal"
-                                                                value="{{ $item->tanggal }}" class="form-control">
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Status</label>
@@ -162,10 +153,6 @@
                         <div class="mb-3">
                             <label class="form-label">Nama Nampan</label>
                             <input type="text" name="nampan" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Tanggal</label>
-                            <input type="date" name="tanggal" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Status</label>

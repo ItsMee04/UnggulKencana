@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('kodeproduk', 100);
             $table->unsignedBigInteger('jenis_id');
-            $table->unsignedBigInteger('nampan_id');
             $table->string('nama', 100);
             $table->integer('harga_jual')->nullable();
             $table->integer('harga_beli')->nullable();
@@ -28,7 +27,6 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->foreign('jenis_id')->references('id')->on('jenis_produk')->onDelete('cascade');
-            $table->foreign('nampan_id')->references('id')->on('nampan')->onDelete('cascade');
         });
     }
 

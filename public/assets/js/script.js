@@ -954,8 +954,6 @@ $(document).ready(function () {
         }
     }
 
-    
-
     $("ul.tabs li").click(function () {
         var $this = $(this);
         var $theTab = $(this).attr("id");
@@ -1014,19 +1012,22 @@ $(document).ready(function () {
                 },
             });
 
-            $(document).on('click', '.addCart', function() {
-                var produkID = $(this).data('id');
-                var produkNama = $(this).data('name');
-                var produkHarga = $(this).data('harga');
-                var produkBerat = $(this).data('berat');
+            $(document).on("click", ".addCart", function () {
+                var produkID = $(this).data("id");
+                var produkNama = $(this).data("name");
+                var produkHarga = $(this).data("harga");
+                var produkBerat = $(this).data("berat");
                 let selectedProducts = [0];
-                
-                localStorage.setItem('item_' + produkID, JSON.stringify({
-                    id: produkID,
-                    nama: produkNama,
-                    harga: produkHarga,
-                    berat: produkBerat,
-                }));
+
+                localStorage.setItem(
+                    "item_" + produkID,
+                    JSON.stringify({
+                        id: produkID,
+                        nama: produkNama,
+                        harga: produkHarga,
+                        berat: produkBerat,
+                    })
+                );
 
                 selectedProducts.push({
                     item_id: produkID,
@@ -1035,42 +1036,10 @@ $(document).ready(function () {
                     item_berat: produkBerat,
                 });
 
-                console.log(selectedProducts)
+                console.log(selectedProducts);
             });
-
-            $(document).ready(function () {
-                var items = '';
-                for (var i = 0; i < localStorage.length; i++) {
-                    var key = localStorage.key(i);
-                    
-                    // Filter key yang dimulai dengan 'item_'
-                    if (key.startsWith('item_')) {
-                        var item = JSON.parse(localStorage.getItem(key));
-
-                        // Buat HTML untuk card Bootstrap
-                        $("#keranjang").append(`
-                            <div class="product-list d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center product-info" data-bs-toggle="modal"
-                                    data-bs-target="#products">
-                                    <div class="info">
-                                        
-                                        <h6><a href="javascript:void(0);">${item.nama}</a></h6>
-                                        <p>${item.harga}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        `);
-                    }
-                }
-
-                // Masukkan semua card yang telah di-generate ke dalam div item-cards
-                $('#item-cards').html(cardsHtml);
-            })
         }
     });
-
-
-    
 
     $("body").append('<div class="sidebar-filter"></div>');
     //theme Settings
@@ -2175,5 +2144,3 @@ $(document).ready(function () {
     });
     /* card with close button */
 });
-
-

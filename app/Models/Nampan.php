@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use GuzzleHttp\Handler\Proxy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,6 +18,7 @@ class Nampan extends Model
     protected $fillable =
     [
         'jenis_id',
+        'produk_id',
         'nampan',
         'tanggal',
         'status'

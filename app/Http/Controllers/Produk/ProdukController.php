@@ -14,8 +14,23 @@ class ProdukController extends Controller
 {
     public function index()
     {
-        $nampan = Nampan::where('status', 1)->get();
-        return view('produk.produk', ['nampan' => $nampan]);
+        $produk = Produk::all();
+
+        $jenis  = Jenis::all();
+
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersNumber = strlen($characters);
+        $codeLength = 12;
+
+        $code = '';
+
+        while (strlen($code) < 12) {
+            $position = rand(0, $charactersNumber - 1);
+            $character = $characters[$position];
+            $code = $code . $character;
+        }
+
+        return view('produk.produk', ['produk' => $produk, 'jenis' => $jenis, 'kodeproduk' => $code]);
     }
 
     public function show($id)
@@ -61,12 +76,17 @@ class ProdukController extends Controller
             'hargajual'     => 'required',
             'hargabeli'     => 'required',
             'keterangan'    => 'required',
+            'jenis'         => 'required',
             'image'         => 'mimes:png,jpg,jpeg',
             'status'        => 'required'
         ], $messages);
 
         if ($request->status == 'Pilih Status') {
             return redirect('produk')->with('errors-message', 'Status wajib di isi !!!');
+        }
+
+        if ($request->jenis == 'Pilih Jenis') {
+            return redirect('produk')->with('errors-message', 'Status Jenis di isi !!!');
         }
 
         $image = "";
@@ -80,7 +100,6 @@ class ProdukController extends Controller
         Produk::create([
             'kodeproduk'        =>  $request->kodeproduk,
             'jenis_id'          =>  $request->jenis,
-            'nampan_id'         =>  $request->nampan,
             'nama'              =>  $request->nama,
             'harga_jual'        =>  $request->hargajual,
             'harga_beli'        =>  $request->hargabeli,
