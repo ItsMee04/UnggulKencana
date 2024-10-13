@@ -102,7 +102,7 @@
                 <form action="/produkNampan/{{ $nampanID }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body text-start">
-                        <div class="table-responsive product-list">
+                        <div class="table-responsive">
                             <table class="table datanew">
                                 <thead>
                                     <tr>

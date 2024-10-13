@@ -27,11 +27,11 @@
                         <li class="@if (request()->route()->uri == 'jenis') active @endif"><a href="/jenis"><i
                                     data-feather="tag"></i><span>Jenis Produk</span></a>
                         </li>
-                        <li class="@if (request()->route()->uri == 'nampan') active @endif"><a href="/nampan"><i
-                                    data-feather="codesandbox"></i><span>Nampan</span></a>
-                        </li>
                         <li class="@if (request()->route()->uri == 'produk' || request()->route()->uri == 'produk/{id}') active @endif"><a href="/produk"><i
                                     data-feather="box"></i><span>Produk</span></a>
+                        </li>
+                        <li class="@if (request()->route()->uri == 'nampan' || request()->route()->uri == 'nampan/{id}') active @endif"><a href="/nampan"><i
+                                    data-feather="codesandbox"></i><span>Nampan</span></a>
                         </li>
                     </ul>
                 </li>
