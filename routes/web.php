@@ -10,6 +10,7 @@ use App\Http\Controllers\Produk\NampanController;
 use App\Http\Controllers\Produk\ProdukController;
 use App\Http\Controllers\Supplier\SupplierController;
 use App\Http\Controllers\Transaksi\DiskonController;
+use App\Http\Controllers\Transaksi\KeranjangController;
 use App\Http\Controllers\Transaksi\POSController;
 use App\Http\Controllers\User\UserController;
 use App\Models\Role;
@@ -79,6 +80,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('pos', [POSController::class, 'index']);
     Route::get('pos/{id}', [POSController::class, 'getItem']);
+    Route::post('pos/{id}', [KeranjangController::class, 'saveItem']);
 
     Route::get('logout', [AuthController::class, 'logout']);
 });

@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Produk;
 
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use App\Models\Jenis;
 use App\Models\Nampan;
-use App\Models\nampanProduk;
 use App\Models\Produk;
-use Carbon\Carbon;
 use Faker\Guesser\Name;
+use App\Models\nampanProduk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class NampanController extends Controller
 {
@@ -36,11 +37,15 @@ class NampanController extends Controller
         ]);
 
         foreach ($request->items as $item) {
-            nampanProduk::create([
-                'nampan_id' =>  $id,
-                'produk_id' =>  $item,
-                'tanggal'   =>  Carbon::today()->format('Y-m-d')
-            ]);
+            if (DB::table('nampan_produk')->where('produk_id', $item)->where('deleted_at', null)->exists()) {
+                return redirect('nampan/' . $id)->with('errors-message', 'Data Kode Produk Sudah Ada !');
+            } else {
+                nampanProduk::create([
+                    'nampan_id' =>  $id,
+                    'produk_id' =>  $item,
+                    'tanggal'   =>  Carbon::today()->format('Y-m-d')
+                ]);
+            }
         }
 
         return redirect('nampan/' . $id)->with('success-message', 'Data Success Disimpan !');

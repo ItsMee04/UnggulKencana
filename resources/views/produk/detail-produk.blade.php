@@ -103,7 +103,9 @@
                     @csrf
                     <div class="modal-body text-start">
                         <div class="table-responsive">
-                            <table class="table datanew">
+                            <input type="text" id="searchInput" class="form-control col-md-3"
+                                placeholder="Search for names...">
+                            <table class="table datanew" id="myTable">
                                 <thead>
                                     <tr>
                                         <th class="no-sort">
@@ -179,5 +181,35 @@
             });
             document.getElementById('delete_link').setAttribute('href', delete_url);
         }
+    </script>
+
+    <script>
+        // Ambil input pencarian dan tabel
+        var input = document.getElementById("searchInput");
+        var table = document.getElementById("myTable");
+        var rows = table.getElementsByTagName("tr");
+
+        // Fungsi pencarian
+        input.addEventListener("keyup", function() {
+            var filter = input.value.toUpperCase();
+
+            // Loop melalui semua baris dan sembunyikan yang tidak sesuai dengan pencarian
+            for (var i = 1; i < rows.length; i++) {
+                var cells = rows[i].getElementsByTagName("td");
+                var match = false;
+
+                // Cek apakah ada teks yang sesuai dalam baris
+                for (var j = 0; j < cells.length; j++) {
+                    var cellValue = cells[j].textContent || cells[j].innerText;
+                    if (cellValue.toUpperCase().indexOf(filter) > -1) {
+                        match = true;
+                        break;
+                    }
+                }
+
+                // Sembunyikan baris jika tidak ada kecocokan
+                rows[i].style.display = match ? "" : "none";
+            }
+        });
     </script>
 @endsection

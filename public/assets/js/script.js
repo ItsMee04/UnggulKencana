@@ -1012,31 +1012,47 @@ $(document).ready(function () {
                 },
             });
 
-            $(document).on("click", ".addCart", function () {
+            $(document).on("click", ".addCart", function (e) {
+                e.preventDefault(); // Mencegah reload halaman
                 var produkID = $(this).data("id");
-                var produkNama = $(this).data("name");
-                var produkHarga = $(this).data("harga");
-                var produkBerat = $(this).data("berat");
-                let selectedProducts = [0];
+                var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-                localStorage.setItem(
-                    "item_" + produkID,
-                    JSON.stringify({
+                $.ajax({
+                    url: `/pos/${produkID}`, // Route Laravel
+                    method: "POST",
+                    data: {
                         id: produkID,
-                        nama: produkNama,
-                        harga: produkHarga,
-                        berat: produkBerat,
-                    })
-                );
+                        _token: csrfToken, // Sertakan token CSRF
+                    },
+                    success: function(response) {
+                        // Tampilkan pesan sukses
+                        const successtoastExample = document.getElementById('successToast')
+                        const toast = new bootstrap.Toast(successtoastExample)
+                        toast.show()
 
-                selectedProducts.push({
-                    item_id: produkID,
-                    item_nama: produkNama,
-                    item_harga: produkHarga,
-                    item_berat: produkBerat,
+                        $("#keranjang").append(
+                            `
+                            <div class="product-list d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center flex-fill">
+                                    <a href="javascript:void(0);" class="img-bg me-2">
+                                        <img src="" alt="Products">
+                                    </a>
+                                    <div class="info d-flex align-items-center justify-content-between flex-fill">
+                                        <div>
+                                            <span>PT0005</span>
+                                            <h6><a href="javascript:void(0);">Red Nike Laser</a></h6>
+                                        </div>
+                                        <p>$2000</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                        );
+                    },
+                    error: function(xhr) {
+                        alert('Terjadi kesalahan saat menyimpan item');
+                    }
                 });
-
-                console.log(selectedProducts);
             });
         }
     });
