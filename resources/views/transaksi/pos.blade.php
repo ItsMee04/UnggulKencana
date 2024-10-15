@@ -55,12 +55,12 @@
                         </div>
                         <div class="product-added block-section">
                             <div class="head-text d-flex align-items-center justify-content-between">
-                                <h6 class="d-flex align-items-center mb-0">Product Added<span class="count">2</span></h6>
+                                <h6 class="d-flex align-items-center mb-0">Product Added<span class="count">2</span>
+                                </h6>
                                 <a href="javascript:void(0);" class="d-flex align-items-center text-danger"><span
                                         class="me-1"><i data-feather="x" class="feather-16"></i></span>Clear all</a>
                             </div>
                             <div class="product-wrap" id="keranjang">
-
                             </div>
                         </div>
                         <div class="block-section">
@@ -167,4 +167,28 @@
         </div>
     </div>
 
+    <!-- Modal Popup untuk delete-->
+    <div class="modal custom-modal fade" id="modal_delete">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-body p-4">
+                    <div class="text-center">
+                        <i class="dripicons-warning h1 text-warning"></i>
+                        <h4 class="mt-2">Perhatian !!</h4>
+                        <p class="mt-3">Yakin menghapus data ini ?</p>
+                        <a id="delete_link" class="btn btn-danger my-2" data-dismiss="modal">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function confirm_modal(delete_url) {
+            $('#modal_delete').modal('show', {
+                backdrop: 'static'
+            });
+            document.getElementById('delete_link').setAttribute('href', delete_url);
+        }
+    </script>
 @endsection

@@ -4,6 +4,47 @@ Template Name: POS - Bootstrap Admin Template
 */
 
 $(document).ready(function () {
+
+    function loadItems(){
+        // Menggunakan AJAX untuk mengambil data dari server
+        $.ajax({
+            url: '/getKeranjang', // Endpoint di Laravel
+            type: 'GET',
+            success: function(response) {
+                // Loop melalui setiap item yang dikembalikan dari server
+                    $.each(response, function (key, item) {
+                        $('#keranjang').append(`
+                            <div class="product-list d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center product-info" data-bs-toggle="modal"
+                                    data-bs-target="#products">
+                                    <a href="javascript:void(0);" class="img-bg">
+                                        <img src="storage/Image/${item.image}" alt="Products">
+                                    </a>
+                                    <div class="info">
+                                        <span>${item.keranjang_id}</span>
+                                        <h6><a href="javascript:void(0);">${item.nama}</a></h6>
+                                        <p>${item.harga_jual}</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center action">
+                                    <a class="me-2 p-2"
+                                        onclick="confirm_modal('delete-keranjang/${item.idkeranjang}');"
+                                        data-bs-toggle="modal" data-bs-target="#modal_delete">
+                                        <i data-feather="trash-2" class="feather-trash-2"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        `); // Menambahkan card ke container
+                    });
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching data:', error);
+            }
+        });
+    }
+    
+    loadItems();
+
     // Variables declarations
     var $wrapper = $(".main-wrapper");
     var $slimScrolls = $(".slimscroll");
@@ -1011,50 +1052,51 @@ $(document).ready(function () {
                     });
                 },
             });
-
-            $(document).on("click", ".addCart", function (e) {
-                e.preventDefault(); // Mencegah reload halaman
-                var produkID = $(this).data("id");
-                var csrfToken = $('meta[name="csrf-token"]').attr('content');
-
-                $.ajax({
-                    url: `/pos/${produkID}`, // Route Laravel
-                    method: "POST",
-                    data: {
-                        id: produkID,
-                        _token: csrfToken, // Sertakan token CSRF
-                    },
-                    success: function(response) {
-                        // Tampilkan pesan sukses
-                        const successtoastExample = document.getElementById('successToast')
-                        const toast = new bootstrap.Toast(successtoastExample)
-                        toast.show()
-
-                        $("#keranjang").append(
-                            `
-                            <div class="product-list d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center flex-fill">
-                                    <a href="javascript:void(0);" class="img-bg me-2">
-                                        <img src="" alt="Products">
-                                    </a>
-                                    <div class="info d-flex align-items-center justify-content-between flex-fill">
-                                        <div>
-                                            <span>PT0005</span>
-                                            <h6><a href="javascript:void(0);">Red Nike Laser</a></h6>
-                                        </div>
-                                        <p>$2000</p>
-                                    </div>
-                                </div>
-                            </div>
-                        `
-                        );
-                    },
-                    error: function(xhr) {
-                        alert('Terjadi kesalahan saat menyimpan item');
-                    }
-                });
-            });
         }
+    });
+
+    $(document).on("click", ".addCart", function (e) {
+        e.preventDefault(); // Mencegah reload halaman
+        var produkID = $(this).data("id");
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+        $.ajax({
+            url: `/pos/cek/${produkID}`, // Route Laravel
+            method: "POST",
+            data: {
+                id: produkID,
+                _token: csrfToken, // Sertakan token CSRF
+            },
+            success: function(response) {
+                if(response.status == 'success'){
+                    $.ajax({
+                        url: `/pos/${produkID}`,
+                        method: 'POST',
+                        data: {
+                            _token: csrfToken,
+                            id: produkID
+                        },
+                        success: function(response) {
+                            const successtoastExample = document.getElementById('successToast')
+                            const toast = new bootstrap.Toast(successtoastExample)
+                            toast.show()
+
+                            loadItems();
+                        },
+                        error: function() {
+                            const dangertoastExamplee = document.getElementById('dangerToastErrors')
+                            const toast = new bootstrap.Toast(dangertoastExamplee)
+                            toast.show()
+                        }
+                    });
+                }
+            },
+            error: function(xhr) {
+                const dangertoastExamplee = document.getElementById('dangerToastErrors')
+                const toast = new bootstrap.Toast(dangertoastExamplee)
+                toast.show()
+            }
+        });
     });
 
     $("body").append('<div class="sidebar-filter"></div>');

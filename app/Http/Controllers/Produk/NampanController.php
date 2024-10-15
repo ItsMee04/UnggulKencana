@@ -37,7 +37,7 @@ class NampanController extends Controller
         ]);
 
         foreach ($request->items as $item) {
-            if (DB::table('nampan_produk')->where('produk_id', $item)->where('deleted_at', null)->exists()) {
+            if (DB::table('nampan_produk')->where('produk_id', $id)->where('deleted_at', null)->exists()) {
                 return redirect('nampan/' . $id)->with('errors-message', 'Data Kode Produk Sudah Ada !');
             } else {
                 nampanProduk::create([

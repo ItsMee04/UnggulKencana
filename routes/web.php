@@ -13,6 +13,7 @@ use App\Http\Controllers\Transaksi\DiskonController;
 use App\Http\Controllers\Transaksi\KeranjangController;
 use App\Http\Controllers\Transaksi\POSController;
 use App\Http\Controllers\User\UserController;
+use App\Models\Keranjang;
 use App\Models\Role;
 
 /*
@@ -80,7 +81,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('pos', [POSController::class, 'index']);
     Route::get('pos/{id}', [POSController::class, 'getItem']);
+    Route::post('pos/cek/{id}', [KeranjangController::class, 'cekItem']);
     Route::post('pos/{id}', [KeranjangController::class, 'saveItem']);
+    Route::get('getKeranjang', [KeranjangController::class, 'index']);
+    Route::get('delete-keranjang/{id}', [KeranjangController::class, 'deleteKeranjang']);
 
     Route::get('logout', [AuthController::class, 'logout']);
 });

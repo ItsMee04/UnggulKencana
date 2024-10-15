@@ -5,11 +5,35 @@ namespace App\Http\Controllers\Transaksi;
 use App\Models\Produk;
 use App\Models\Keranjang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class KeranjangController extends Controller
 {
+    public function index()
+    {
+        $produk = DB::table('produk')
+            ->leftJoin('keranjang', 'produk.id', '=', 'keranjang.produk_id')
+            ->select('produk.*', 'keranjang.id as idkeranjang', 'keranjang.keranjang_id', 'keranjang.status', 'keranjang.users')
+            ->where('keranjang.status', 1)
+            ->where('keranjang.users', Auth::user()->id)
+            ->get();
+
+        return response()->json($produk);
+    }
+
+    public function cekItem(Request $request, $id)
+    {
+        $item = Keranjang::where('produk_id', $request->id)->first();
+
+        if ($item) {
+            return response()->json(['status' => 'error', 'message' => 'Data sudah ada di database!'], 400);
+        } else {
+            return response()->json(['status' => 'success', 'message' => 'Data belum ada, lanjutkan proses simpan']);
+        }
+    }
+
     public function saveItem(Request $request, $id)
     {
         $messages = [
@@ -34,18 +58,31 @@ class KeranjangController extends Controller
 
         $total = Produk::where('id', $id)->first()->harga_jual;
 
+        $produk = Keranjang::where('produk_id', $id)->first();
+
         if ($credentials) {
-            Keranjang::create([
-                'keranjang_id'  =>  $code,
-                'produk_id'     =>  $id,
-                'total'         =>  $total,
-                'users'         =>  Auth::user()->id,
-                'status'        =>  1,
-            ]);
+            if (DB::table('keranjang')->where('produk_id', $id)->exists()) {
+                return redirect('pos')->with('errors-message', 'Data Produk Sudah Ada !');
+            } else {
+                Keranjang::create([
+                    'keranjang_id'  =>  $code,
+                    'produk_id'     =>  $id,
+                    'total'         =>  $total,
+                    'users'         =>  Auth::user()->id,
+                    'status'        =>  1,
+                ]);
+            }
         }
 
         return response()->json([
-            'message' => 'Item berhasil disimpan',
+            'success-message' => 'Item berhasil disimpan',
         ]);
+    }
+
+    public function deleteKeranjang($id)
+    {
+        Keranjang::where('id', $id)->delete();
+
+        return redirect('pos/')->with('success-message', 'Data Success Dihapus !');
     }
 }
