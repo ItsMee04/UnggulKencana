@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table  datanew">
+                        <table class="table datanew">
                             <thead>
                                 <tr>
                                     <th>No.</th>

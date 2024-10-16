@@ -36,6 +36,8 @@ $(document).ready(function () {
                         </div>
                     `);
                 });
+
+                
             },
             error: function (xhr, status, error) {
                 console.error("Error fetching data:", error);
@@ -44,6 +46,10 @@ $(document).ready(function () {
     }
 
     loadItems();
+    
+    getCount();
+
+    totalHargaKeranjang();
 
     $(document).on("click", ".deleteKeranjang", function () {
         id = $(this).data("id");
@@ -64,11 +70,14 @@ $(document).ready(function () {
                     $("#modal_delete").modal("hide");
 
                     const successtoastExample =
-                        document.getElementById("successToasts");
+                        document.getElementById("successToastDelete");
                     const toast = new bootstrap.Toast(successtoastExample);
                     toast.show();
 
                     loadItems();
+                    getCount();
+                    totalHargaKeranjang();
+                    getDiscount();
                 }
             },
             error: function (xhr) {
@@ -79,6 +88,136 @@ $(document).ready(function () {
             },
         });
     });
+
+    function getCount() {
+        $.ajax({
+            url: "/getCount", // Endpoint di Laravel
+            type: "GET",
+            success: function (response) {
+                // Loop melalui setiap item yang dikembalikan dari server
+                $(".count").text(0);
+                if (response.success) {
+                    $(".count").text(response.count)
+                } else {
+                    $(".count").text(0)
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error fetching data:", error);
+            },
+        });
+    }
+
+    $(document).on("click", "#deleteAllKeranjang", function () {
+        var csrfToken = $('meta[name="csrf-token"]').attr("content");
+
+        $.ajax({
+            url: `/deleteAllKeranjang`, // Route Laravel
+            type: "DELETE",
+            data: {
+                _token: csrfToken, // Sertakan token CSRF
+            },
+            success: function (response) {
+                if (response.success) {
+                    $("#modaldeleteALlKeranjang").modal("hide");
+
+                    const successtoastExample =
+                        document.getElementById("successToastDelete");
+                    const toast = new bootstrap.Toast(successtoastExample);
+                    toast.show();
+
+                    loadItems();
+                    getCount();
+                    totalHargaKeranjang();
+                    getDiscount();
+                }
+            },
+            error: function (xhr) {
+                const dangertoastExamplee =
+                    document.getElementById("dangerToastErrors");
+                const toast = new bootstrap.Toast(dangertoastExamplee);
+                toast.show();
+            },
+        });
+    });
+
+    function totalHargaKeranjang() {
+        $.ajax({
+            url: "/totalHargaKeranjang", // Endpoint di Laravel
+            type: "GET",
+            success: function (response) {
+                // Loop melalui setiap item yang dikembalikan dari server
+                $("#totalhargabarang").text(0);
+                if (response.success) {
+
+                    const total = response.total;
+
+                    const formatter = new Intl.NumberFormat('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR',
+                        minimumFractionDigits: 0 // Biasanya mata uang Rupiah tidak menggunakan desimal
+                    });
+            
+                    var formattedAmount = formatter.format(total);  // Output: "Rp1.500.000"
+
+                    $("#totalhargabarang").text(formattedAmount)
+                } else {
+                    $("#totalhargabarang").text(0)
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error fetching data:", error);
+            },
+        });
+    }
+
+    $(document).on('change', "#pilihDiskon", function getDiscount() {
+        const diskon = $(this).val();
+
+        $.ajax({
+            url: "/totalHargaKeranjang", // Endpoint di Laravel
+            type: "GET",
+            success: function (response) {
+                // Loop melalui setiap item yang dikembalikan dari server
+                $("#hargadiskon").text(0);
+                $("#total").text(0);
+                $("#grandtotal").text(0);
+                $("#discount").text(diskon)
+                if (response.success) {
+
+                    const total = response.total;
+                    const subDiskon = diskon / 100;
+                    const TotalDiskon = total * subDiskon;
+
+                    const subTotalDiskon = total - TotalDiskon;
+
+                    const formatter = new Intl.NumberFormat('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR',
+                        minimumFractionDigits: 0 // Biasanya mata uang Rupiah tidak menggunakan desimal
+                    });
+            
+                    const hargatotaldiskon = formatter.format(TotalDiskon);  // Output: "Rp1.500.000"
+                    const hargatotal = formatter.format(subTotalDiskon);  // Output: "Rp1.500.000"
+
+                    $("#hargadiskon").text(hargatotaldiskon)
+                    $("#total").text(hargatotal)
+                    $("#grandtotal").text(hargatotal);
+
+                } else {
+                    $("#hargadiskon").text(0)
+                    $("#total").text(0)
+                    $("#grandtotal").text(0);
+                    $("#discount").text(diskon)
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error fetching data:", error);
+            },
+        });
+
+
+    })
 
     // Variables declarations
     var $wrapper = $(".main-wrapper");
@@ -1066,7 +1205,7 @@ $(document).ready(function () {
 											alt="Products" width="100px" height="100px"/>
 									</a>
 									<h6 class="cat-name">
-										<a href="javascript:void(0);">JENIS : ${item.jenis.jenis}</a>
+										<a href="javascript:void(0);">KODE : ${item.kodeproduk}</a>
 									</h6>
 									<h6 class="product-name">
 										<a href="javascript:void(0);">NAMA : ${item.nama}</a>
@@ -1119,6 +1258,9 @@ $(document).ready(function () {
                             toast.show();
 
                             loadItems();
+                            getCount();
+                            totalHargaKeranjang();
+                            getDiscount();
                         },
                         error: function () {
                             const dangertoastExamplee =

@@ -82,7 +82,7 @@
                                         </td>
                                         <td>{{ $item->berat }} / grams</td>
                                         <td>{{ $item->karat }}</td>
-                                        <td>{{ 'Rp.' . ' ' . number_format($item->hargajual) }}</td>
+                                        <td>{{ 'Rp.' . ' ' . number_format($item->harga_jual) }}</td>
                                         <td class="action-table-data">
                                             <div class="edit-delete-action">
                                                 <a class="me-2 edit-icon  p-2" data-bs-effect="effect-sign"

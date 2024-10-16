@@ -23,6 +23,13 @@ class KeranjangController extends Controller
         return response()->json($produk);
     }
 
+    public function getCount()
+    {
+        $count = Keranjang::where('status', 1)->where('users', Auth::user()->id)->count();
+
+        return response()->json(['success' => true, 'count' => $count]);
+    }
+
     public function cekItem(Request $request, $id)
     {
         $item = Keranjang::where('produk_id', $request->id)->first();
@@ -84,5 +91,23 @@ class KeranjangController extends Controller
         $delete = Keranjang::where('id', $id)->delete();
 
         return response()->json(['data' => $delete, 'success' => true]);
+    }
+
+    public function deleteAllKeranjang()
+    {
+        Keranjang::where('status', 1)->where('users', Auth::user()->id)->delete();
+
+        return response()->json(['success' => true]);
+    }
+
+    public function totalHargaKeranjang()
+    {
+        $total = Keranjang::leftjoin('produk', 'keranjang.produk_id', 'produk.id')
+            ->select('produk.harga_jual')
+            ->where('keranjang.status', 1)
+            ->where('keranjang.users', Auth::user()->id)
+            ->sum(DB::raw('produk.harga_jual'));
+
+        return response()->json(['success' => true, 'total' => $total]);
     }
 }

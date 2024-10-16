@@ -62,10 +62,12 @@
                         </div>
                         <div class="product-added block-section">
                             <div class="head-text d-flex align-items-center justify-content-between">
-                                <h6 class="d-flex align-items-center mb-0">Product Added<span class="count">2</span>
+                                <h6 class="d-flex align-items-center mb-0">Product Added<span class="count"
+                                        id="produkCount"></span>
                                 </h6>
-                                <a href="javascript:void(0);" class="d-flex align-items-center text-danger"><span
-                                        class="me-1"><i data-feather="x" class="feather-16"></i></span>Clear all</a>
+                                <a href="javascript:void(0);" class="d-flex align-items-center text-danger"
+                                    data-bs-toggle="modal" data-bs-target="#modaldeleteALlKeranjang"><span class="me-1"><i
+                                            data-feather="x" class="feather-16"></i></span class="deleteAll">Clear all</a>
                             </div>
                             <div class="product-wrap" id="keranjang">
                             </div>
@@ -76,8 +78,8 @@
                                     <div class="col-12">
                                         <div class="input-block">
                                             <label>Discount</label>
-                                            <select class="select">
-                                                <option>Pilih Diskon</option>
+                                            <select class="select" id="pilihDiskon">
+                                                <option value="0">Pilih Diskon</option>
                                                 @foreach ($diskon as $item)
                                                     <option value="{{ $item->diskon }}"> {{ $item->nama }}</option>
                                                 @endforeach
@@ -90,22 +92,22 @@
                                 <table class="table table-responsive table-borderless">
                                     <tr>
                                         <td>Sub Total</td>
-                                        <td class="text-end">$60,454</td>
+                                        <td class="text-end" id="totalhargabarang">0</td>
                                     </tr>
                                     <tr>
-                                        <td class="danger">Discount (10%)</td>
-                                        <td class="danger text-end">$15.21</td>
+                                        <td class="danger">Discount (<span id="discount"></span> %)</td>
+                                        <td class="danger text-end" id="hargadiskon"></td>
                                     </tr>
                                     <tr>
                                         <td>Total</td>
-                                        <td class="text-end">$64,024.5</td>
+                                        <td class="text-end" id="total"></td>
                                     </tr>
                                 </table>
                             </div>
                         </div>
                         <div class="d-grid btn-block">
                             <a class="btn btn-secondary" href="javascript:void(0);">
-                                Grand Total : $64,024.5
+                                <span class="danger text-end" id="grandtotal">0</span>
                             </a>
                         </div>
                         <div class="btn-row d-sm-flex align-items-center justify-content-between">
@@ -184,6 +186,22 @@
                         <h4 class="mt-2">Perhatian !!</h4>
                         <p class="mt-3">Yakin menghapus data ini ?</p>
                         <a id="deleteKeranjang" class="btn btn-danger my-2" data-dismiss="modal">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Popup untuk delete-->
+    <div class="modal custom-modal fade" id="modaldeleteALlKeranjang">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-body p-4">
+                    <div class="text-center">
+                        <i class="dripicons-warning h1 text-warning"></i>
+                        <h4 class="mt-2">Perhatian !!</h4>
+                        <p class="mt-3">Yakin menghapus data ini ?</p>
+                        <a id="deleteAllKeranjang" class="btn btn-danger my-2" data-dismiss="modal">Delete</a>
                     </div>
                 </div>
             </div>

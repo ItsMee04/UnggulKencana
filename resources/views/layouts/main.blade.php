@@ -113,7 +113,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
-                Data Beerhasil Disimpan Ke Keranjang
+                Data Berhasil Disimpan Ke Keranjang
+            </div>
+        </div>
+        <div id="successToastDelete" class="toast colored-toast bg-secondary-transparent" role="alert"
+            aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-secondary text-fixed-white">
+                <strong class="me-auto">Peringatan !</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Data Berhasil DiHapus Dari keranjang
             </div>
         </div>
         <div id="dangerToastErrors" class="toast colored-toast bg-danger-transparent" role="alert"
