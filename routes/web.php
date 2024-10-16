@@ -80,6 +80,7 @@ Route::middleware('auth')->group(function () {
     Route::get('delete-diskon/{id}', [DiskonController::class, 'delete']);
 
     Route::get('pos', [POSController::class, 'index']);
+    Route::get('pos/fetchAllItem', [POSController::class, 'fetchAllItem']);
     Route::get('pos/{id}', [POSController::class, 'getItem']);
     Route::post('pos/cek/{id}', [KeranjangController::class, 'cekItem']);
     Route::post('pos/{id}', [KeranjangController::class, 'saveItem']);

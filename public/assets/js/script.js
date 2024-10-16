@@ -4,45 +4,45 @@ Template Name: POS - Bootstrap Admin Template
 */
 
 $(document).ready(function () {
-
-    function loadItems(){
+    function loadItems() {
         // Menggunakan AJAX untuk mengambil data dari server
         $.ajax({
-            url: '/getKeranjang', // Endpoint di Laravel
-            type: 'GET',
-            success: function(response) {
+            url: "/getKeranjang", // Endpoint di Laravel
+            type: "GET",
+            success: function (response) {
                 // Loop melalui setiap item yang dikembalikan dari server
-                    $.each(response, function (key, item) {
-                        $('#keranjang').append(`
-                            <div class="product-list d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center product-info" data-bs-toggle="modal"
-                                    data-bs-target="#products">
-                                    <a href="javascript:void(0);" class="img-bg">
-                                        <img src="storage/Image/${item.image}" alt="Products">
-                                    </a>
-                                    <div class="info">
-                                        <span>${item.keranjang_id}</span>
-                                        <h6><a href="javascript:void(0);">${item.nama}</a></h6>
-                                        <p>${item.harga_jual}</p>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center action">
-                                    <a class="me-2 p-2"
-                                        onclick="confirm_modal('delete-keranjang/${item.idkeranjang}');"
-                                        data-bs-toggle="modal" data-bs-target="#modal_delete">
-                                        <i data-feather="trash-2" class="feather-trash-2"></i>
-                                    </a>
+                $("#keranjang").empty();
+                response.forEach((item) => {
+                    $("#keranjang").append(`
+                        <div class="product-list d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center product-info" data-bs-toggle="modal"
+                                data-bs-target="#products">
+                                <a href="javascript:void(0);" class="img-bg">
+                                    <img src="storage/Image/${item.image}" alt="Products">
+                                </a>
+                                <div class="info">
+                                    <span>${item.keranjang_id}</span>
+                                    <h6><a href="javascript:void(0);">${item.nama}</a></h6>
+                                    <p>${item.harga_jual}</p>
                                 </div>
                             </div>
-                        `); // Menambahkan card ke container
-                    });
+                            <div class="d-flex align-items-center action">
+                                <a class="me-2 p-2"
+                                    onclick="confirm_modal('delete-keranjang/${item.idkeranjang}');"
+                                    data-bs-toggle="modal" data-bs-target="#modal_delete">
+                                    <i data-feather="trash-2" class="feather-trash-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    `);
+                });
             },
-            error: function(xhr, status, error) {
-                console.error('Error fetching data:', error);
-            }
+            error: function (xhr, status, error) {
+                console.error("Error fetching data:", error);
+            },
         });
     }
-    
+
     loadItems();
 
     // Variables declarations
@@ -1001,7 +1001,6 @@ $(document).ready(function () {
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr("content");
 
         if ($this.hasClass("active")) {
-            // do nothing
         } else {
             $this
                 .closest(".tabs_wrapper")
@@ -1058,7 +1057,7 @@ $(document).ready(function () {
     $(document).on("click", ".addCart", function (e) {
         e.preventDefault(); // Mencegah reload halaman
         var produkID = $(this).data("id");
-        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+        var csrfToken = $('meta[name="csrf-token"]').attr("content");
 
         $.ajax({
             url: `/pos/cek/${produkID}`, // Route Laravel
@@ -1067,35 +1066,42 @@ $(document).ready(function () {
                 id: produkID,
                 _token: csrfToken, // Sertakan token CSRF
             },
-            success: function(response) {
-                if(response.status == 'success'){
+            success: function (response) {
+                if (response.status == "success") {
                     $.ajax({
                         url: `/pos/${produkID}`,
-                        method: 'POST',
+                        method: "POST",
                         data: {
                             _token: csrfToken,
-                            id: produkID
+                            id: produkID,
                         },
-                        success: function(response) {
-                            const successtoastExample = document.getElementById('successToast')
-                            const toast = new bootstrap.Toast(successtoastExample)
-                            toast.show()
+                        success: function (response) {
+                            const successtoastExample =
+                                document.getElementById("successToasts");
+                            const toast = new bootstrap.Toast(
+                                successtoastExample
+                            );
+                            toast.show();
 
                             loadItems();
                         },
-                        error: function() {
-                            const dangertoastExamplee = document.getElementById('dangerToastErrors')
-                            const toast = new bootstrap.Toast(dangertoastExamplee)
-                            toast.show()
-                        }
+                        error: function () {
+                            const dangertoastExamplee =
+                                document.getElementById("dangerToastErrors");
+                            const toast = new bootstrap.Toast(
+                                dangertoastExamplee
+                            );
+                            toast.show();
+                        },
                     });
                 }
             },
-            error: function(xhr) {
-                const dangertoastExamplee = document.getElementById('dangerToastErrors')
-                const toast = new bootstrap.Toast(dangertoastExamplee)
-                toast.show()
-            }
+            error: function (xhr) {
+                const dangertoastExamplee =
+                    document.getElementById("dangerToastErrors");
+                const toast = new bootstrap.Toast(dangertoastExamplee);
+                toast.show();
+            },
         });
     });
 

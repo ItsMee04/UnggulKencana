@@ -106,6 +106,16 @@
                 @endforeach
             </div>
         </div>
+        <div id="successToasts" class="toast colored-toast bg-secondary-transparent" role="alert"
+            aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-secondary text-fixed-white">
+                <strong class="me-auto">Peringatan !</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Data Beerhasil Disimpan Ke Keranjang
+            </div>
+        </div>
         <div id="dangerToastErrors" class="toast colored-toast bg-danger-transparent" role="alert"
             aria-live="assertive" aria-atomic="true">
             <div class="toast-header bg-danger text-fixed-white">
