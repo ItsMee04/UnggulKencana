@@ -85,17 +85,10 @@ class POSController extends Controller
     {
         if ($id == 'all') {
             $produk = Produk::where('status', 1)->get();
-
-            foreach ($produk as $item) {
-                $item['harga_jual'] = number_format($item['harga_jual'], 0, ',', '.');
-            }
             return $produk->loadMissing('jenis');
         } else {
             $produk = Produk::where('jenis_id', $id)->get();
 
-            foreach ($produk as $item) {
-                $item['harga_jual'] = number_format($item['harga_jual'], 0, ',', '.');
-            }
             return $produk->loadMissing('jenis');
         }
     }

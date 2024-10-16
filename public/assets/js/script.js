@@ -13,6 +13,14 @@ $(document).ready(function () {
                 // Loop melalui setiap item yang dikembalikan dari server
                 $("#keranjang").empty();
                 response.forEach((item) => {
+                    
+                    const formatter = new Intl.NumberFormat('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR',
+                        minimumFractionDigits: 0 // Biasanya mata uang Rupiah tidak menggunakan desimal
+                    });
+            
+                    const hargajual = formatter.format(item.harga_jual);  // Output: "Rp1.500.000"
                     $("#keranjang").append(`
                         <div class="product-list d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center product-info" data-bs-toggle="modal"
@@ -23,7 +31,7 @@ $(document).ready(function () {
                                 <div class="info">
                                     <span>${item.keranjang_id}</span>
                                     <h6><a href="javascript:void(0);">${item.nama}</a></h6>
-                                    <p>${item.harga_jual}</p>
+                                    <p>${hargajual}</p>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center action">
@@ -1196,6 +1204,13 @@ $(document).ready(function () {
                 success: function (data) {
                     $("#daftarProduk").empty();
                     $.each(data, function (key, item) {
+                        const formatter = new Intl.NumberFormat('id-ID', {
+                            style: 'currency',
+                            currency: 'IDR',
+                            minimumFractionDigits: 0 // Biasanya mata uang Rupiah tidak menggunakan desimal
+                        });
+                
+                        const hargajual = formatter.format(item.harga_jual);  // Output: "Rp1.500.000"
                         $("#daftarProduk").append(
                             `
 							<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3">
@@ -1213,7 +1228,7 @@ $(document).ready(function () {
 									<div
 										class="d-flex align-items-center justify-content-between price">
 										<span>BERAT : ${item.berat} /gram</span>
-										<p>HARGA: Rp. ${item.harga_jual}</p>
+										<p>HARGA: Rp. ${hargajual}</p>
 									</div>
 									<div class="align-items-center justify-content-between price text-center">
                                         <button data-id="${item.id}" data-name="${item.nama}" data-harga="${item.harga_jual}" data-berat="${item.berat}" class="btn btn-sm btn-outline-primary ms-1 addCart">Add To Cart</button>
