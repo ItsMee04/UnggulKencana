@@ -85,7 +85,7 @@ Route::middleware('auth')->group(function () {
     Route::post('pos/cek/{id}', [KeranjangController::class, 'cekItem']);
     Route::post('pos/{id}', [KeranjangController::class, 'saveItem']);
     Route::get('getKeranjang', [KeranjangController::class, 'index']);
-    Route::get('delete-keranjang/{id}', [KeranjangController::class, 'deleteKeranjang']);
+    Route::delete('delete-keranjang/{id}', [KeranjangController::class, 'deleteKeranjang']);
 
     Route::get('logout', [AuthController::class, 'logout']);
 });

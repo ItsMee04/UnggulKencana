@@ -27,8 +27,8 @@ $(document).ready(function () {
                                 </div>
                             </div>
                             <div class="d-flex align-items-center action">
-                                <a class="me-2 p-2"
-                                    onclick="confirm_modal('delete-keranjang/${item.idkeranjang}');"
+                                <a class="me-2 p-2 deleteKeranjang"
+                                    data-id="${item.idkeranjang}"
                                     data-bs-toggle="modal" data-bs-target="#modal_delete">
                                     <i data-feather="trash-2" class="feather-trash-2"></i>
                                 </a>
@@ -44,6 +44,41 @@ $(document).ready(function () {
     }
 
     loadItems();
+
+    $(document).on("click", ".deleteKeranjang", function () {
+        id = $(this).data("id");
+    });
+
+    $("#deleteKeranjang").on("click", function () {
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
+
+        $.ajax({
+            type: "DELETE",
+            url: "delete-keranjang/" + id,
+            success: function (response) {
+                if (response.success) {
+                    $("#modal_delete").modal("hide");
+
+                    const successtoastExample =
+                        document.getElementById("successToasts");
+                    const toast = new bootstrap.Toast(successtoastExample);
+                    toast.show();
+
+                    loadItems();
+                }
+            },
+            error: function (xhr) {
+                const dangertoastExamplee =
+                    document.getElementById("dangerToastErrors");
+                const toast = new bootstrap.Toast(dangertoastExamplee);
+                toast.show();
+            },
+        });
+    });
 
     // Variables declarations
     var $wrapper = $(".main-wrapper");

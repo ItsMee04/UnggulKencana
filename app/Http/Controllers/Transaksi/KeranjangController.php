@@ -81,8 +81,8 @@ class KeranjangController extends Controller
 
     public function deleteKeranjang($id)
     {
-        Keranjang::where('id', $id)->delete();
+        $delete = Keranjang::where('id', $id)->delete();
 
-        return redirect('pos/')->with('success-message', 'Data Success Dihapus !');
+        return response()->json(['data' => $delete, 'success' => true]);
     }
 }

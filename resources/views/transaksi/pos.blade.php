@@ -183,19 +183,10 @@
                         <i class="dripicons-warning h1 text-warning"></i>
                         <h4 class="mt-2">Perhatian !!</h4>
                         <p class="mt-3">Yakin menghapus data ini ?</p>
-                        <a id="delete_link" class="btn btn-danger my-2" data-dismiss="modal">Delete</a>
+                        <a id="deleteKeranjang" class="btn btn-danger my-2" data-dismiss="modal">Delete</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        function confirm_modal(delete_url) {
-            $('#modal_delete').modal('show', {
-                backdrop: 'static'
-            });
-            document.getElementById('delete_link').setAttribute('href', delete_url);
-        }
-    </script>
 @endsection
