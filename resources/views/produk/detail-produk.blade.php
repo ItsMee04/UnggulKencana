@@ -72,7 +72,7 @@
                                         </td>
                                         <td> {{ $item->produk->berat }} / grams</td>
                                         <td>{{ $item->produk->karat }}</td>
-                                        <td>{{ 'Rp.' . ' ' . number_format($item->produk->harga) }}</td>
+                                        <td>{{ 'Rp.' . ' ' . number_format($item->produk->harga_jual) }}</td>
                                         <td class="action-table-data">
                                             <div class="edit-delete-action">
                                                 <a class="me-2 p-2"
