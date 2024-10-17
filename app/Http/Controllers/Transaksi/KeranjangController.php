@@ -67,22 +67,45 @@ class KeranjangController extends Controller
 
         $produk = Keranjang::where('produk_id', $id)->first();
 
+        $keranjangID = Keranjang::latest('keranjang_id')->first();
+
         if ($credentials) {
             if (DB::table('keranjang')->where('produk_id', $id)->exists()) {
                 return redirect('pos')->with('errors-message', 'Data Produk Sudah Ada !');
             } else {
-                Keranjang::create([
-                    'keranjang_id'  =>  $code,
-                    'produk_id'     =>  $id,
-                    'total'         =>  $total,
-                    'users'         =>  Auth::user()->id,
-                    'status'        =>  1,
-                ]);
+                if ($keranjangID == null) {
+                    Keranjang::create([
+                        'keranjang_id'  =>  $code,
+                        'produk_id'     =>  $id,
+                        'total'         =>  $total,
+                        'status'        =>  1,
+                        'users'         =>  Auth::user()->id,
+                    ]);
+                } elseif ($keranjangID->status == 1) {
+
+                    Keranjang::create([
+                        'keranjang_id'  =>  $keranjangID->keranjang_id,
+                        'produk_id'     =>  $id,
+                        'total'         =>  $total,
+                        'status'        =>  1,
+                        'users'         =>  Auth::user()->id,
+                    ]);
+                } elseif ($keranjangID->status == 2) {
+
+                    Keranjang::create([
+                        'keranjang_id'  =>  $code,
+                        'produk_id'     =>  $id,
+                        'total'         =>  $total,
+                        'status'        =>  1,
+                        'users'         =>  Auth::user()->id,
+                    ]);
+                }
             }
         }
 
         return response()->json([
             'success-message' => 'Item berhasil disimpan',
+            'data'            =>  $keranjangID
         ]);
     }
 

@@ -13,18 +13,20 @@ return new class extends Migration
     {
         Schema::create('transaksi', function (Blueprint $table) {
             $table->id();
-            $table->string('id_transaksi', 100);
-            $table->string('keranjang_id', 100);
+            $table->string('transaksi_id', 100);
+            $table->string('id_keranjang');
             $table->unsignedBigInteger('pelanggan_id');
-            $table->integer('discount');
+            $table->integer('diskon');
             $table->date('tanggal');
             $table->integer('total');
-            $table->unsignedbigInteger('users');
+            $table->unsignedBigInteger('users_id');
             $table->integer('status');
             $table->timestamps();
+            $table->softDeletes();
 
+            $table->foreign('id_keranjang')->references('keranjang_id')->on('keranjang')->onDelete('cascade');
             $table->foreign('pelanggan_id')->references('id')->on('pelanggan')->onDelete('cascade');
-            $table->foreign('users')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

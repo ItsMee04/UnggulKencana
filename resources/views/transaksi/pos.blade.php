@@ -49,7 +49,7 @@
                             <h6>Customer Information</h6>
                             <div class="input-block d-flex align-items-center">
                                 <div class="flex-grow-1">
-                                    <select class="select" id="customer">
+                                    <select class="select" id="pelanggan" name="pelanggan">
                                         <option>Walk in Customer</option>
                                         @foreach ($pelanggan as $item)
                                             <option value="{{ $item->id }}">{{ $item->nama }}</option>
@@ -78,8 +78,8 @@
                                     <div class="col-12">
                                         <div class="input-block">
                                             <label>Discount</label>
-                                            <select class="select" id="pilihDiskon">
-                                                <option value="0">Pilih Diskon</option>
+                                            <select class="select" id="pilihDiskon" name="diskon">
+                                                <option value="0" selected>Pilih Diskon</option>
                                                 @foreach ($diskon as $item)
                                                     <option value="{{ $item->diskon }}"> {{ $item->nama }}</option>
                                                 @endforeach
@@ -111,9 +111,9 @@
                             </a>
                         </div>
                         <div class="btn-row d-sm-flex align-items-center justify-content-between">
-                            <a href="javascript:void(0);" class="btn btn-success btn-icon flex-fill" data-bs-toggle="modal"
-                                data-bs-target="#payment-completed"><span class="me-1 d-flex align-items-center"><i
-                                        data-feather="credit-card" class="feather-16"></i></span>Payment</a>
+                            <a href="javascript:void(0);" class="btn btn-success btn-icon flex-fill" id="payment"><span
+                                    class="me-1 d-flex align-items-center"><i data-feather="credit-card"
+                                        class="feather-16"></i></span>Payment</a>
                         </div>
                     </aside>
                 </div>

@@ -13,14 +13,13 @@ $(document).ready(function () {
                 // Loop melalui setiap item yang dikembalikan dari server
                 $("#keranjang").empty();
                 response.forEach((item) => {
-                    
-                    const formatter = new Intl.NumberFormat('id-ID', {
-                        style: 'currency',
-                        currency: 'IDR',
-                        minimumFractionDigits: 0 // Biasanya mata uang Rupiah tidak menggunakan desimal
+                    const formatter = new Intl.NumberFormat("id-ID", {
+                        style: "currency",
+                        currency: "IDR",
+                        minimumFractionDigits: 0, // Biasanya mata uang Rupiah tidak menggunakan desimal
                     });
-            
-                    const hargajual = formatter.format(item.harga_jual);  // Output: "Rp1.500.000"
+
+                    const hargajual = formatter.format(item.harga_jual); // Output: "Rp1.500.000"
                     $("#keranjang").append(`
                         <div class="product-list d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center product-info" data-bs-toggle="modal"
@@ -44,8 +43,6 @@ $(document).ready(function () {
                         </div>
                     `);
                 });
-
-                
             },
             error: function (xhr, status, error) {
                 console.error("Error fetching data:", error);
@@ -54,7 +51,7 @@ $(document).ready(function () {
     }
 
     loadItems();
-    
+
     getCount();
 
     totalHargaKeranjang();
@@ -105,9 +102,9 @@ $(document).ready(function () {
                 // Loop melalui setiap item yang dikembalikan dari server
                 $(".count").text(0);
                 if (response.success) {
-                    $(".count").text(response.count)
+                    $(".count").text(response.count);
                 } else {
-                    $(".count").text(0)
+                    $(".count").text(0);
                 }
             },
             error: function (xhr, status, error) {
@@ -157,20 +154,19 @@ $(document).ready(function () {
                 // Loop melalui setiap item yang dikembalikan dari server
                 $("#totalhargabarang").text(0);
                 if (response.success) {
-
                     const total = response.total;
 
-                    const formatter = new Intl.NumberFormat('id-ID', {
-                        style: 'currency',
-                        currency: 'IDR',
-                        minimumFractionDigits: 0 // Biasanya mata uang Rupiah tidak menggunakan desimal
+                    const formatter = new Intl.NumberFormat("id-ID", {
+                        style: "currency",
+                        currency: "IDR",
+                        minimumFractionDigits: 0, // Biasanya mata uang Rupiah tidak menggunakan desimal
                     });
-            
-                    var formattedAmount = formatter.format(total);  // Output: "Rp1.500.000"
 
-                    $("#totalhargabarang").text(formattedAmount)
+                    var formattedAmount = formatter.format(total); // Output: "Rp1.500.000"
+
+                    $("#totalhargabarang").text(formattedAmount);
                 } else {
-                    $("#totalhargabarang").text(0)
+                    $("#totalhargabarang").text(0);
                 }
             },
             error: function (xhr, status, error) {
@@ -179,7 +175,7 @@ $(document).ready(function () {
         });
     }
 
-    $(document).on('change', "#pilihDiskon", function getDiscount() {
+    $(document).on("change", "#pilihDiskon", function getDiscount() {
         const diskon = $(this).val();
 
         $.ajax({
@@ -190,42 +186,47 @@ $(document).ready(function () {
                 $("#hargadiskon").text(0);
                 $("#total").text(0);
                 $("#grandtotal").text(0);
-                $("#discount").text(diskon)
+                $("#discount").text(diskon);
                 if (response.success) {
-
                     const total = response.total;
                     const subDiskon = diskon / 100;
                     const TotalDiskon = total * subDiskon;
 
                     const subTotalDiskon = total - TotalDiskon;
 
-                    const formatter = new Intl.NumberFormat('id-ID', {
-                        style: 'currency',
-                        currency: 'IDR',
-                        minimumFractionDigits: 0 // Biasanya mata uang Rupiah tidak menggunakan desimal
+                    const formatter = new Intl.NumberFormat("id-ID", {
+                        style: "currency",
+                        currency: "IDR",
+                        minimumFractionDigits: 0, // Biasanya mata uang Rupiah tidak menggunakan desimal
                     });
-            
-                    const hargatotaldiskon = formatter.format(TotalDiskon);  // Output: "Rp1.500.000"
-                    const hargatotal = formatter.format(subTotalDiskon);  // Output: "Rp1.500.000"
 
-                    $("#hargadiskon").text(hargatotaldiskon)
-                    $("#total").text(hargatotal)
+                    const hargatotaldiskon = formatter.format(TotalDiskon); // Output: "Rp1.500.000"
+                    const hargatotal = formatter.format(subTotalDiskon); // Output: "Rp1.500.000"
+
+                    $("#hargadiskon").text(hargatotaldiskon);
+                    $("#total").text(hargatotal);
                     $("#grandtotal").text(hargatotal);
-
                 } else {
-                    $("#hargadiskon").text(0)
-                    $("#total").text(0)
+                    $("#hargadiskon").text(0);
+                    $("#total").text(0);
                     $("#grandtotal").text(0);
-                    $("#discount").text(diskon)
+                    $("#discount").text(diskon);
                 }
             },
             error: function (xhr, status, error) {
                 console.error("Error fetching data:", error);
             },
         });
+    });
 
+    $(document).on("click", "#payment", function () {
+        var csrfToken = $('meta[name="csrf-token"]').attr("content");
 
-    })
+        const pelanggan = document.querySelector("#pelanggan").value;
+        const diskon = document.querySelector("#pilihDiskon").value;
+
+        console.log([pelanggan, diskon]);
+    });
 
     // Variables declarations
     var $wrapper = $(".main-wrapper");
@@ -1204,13 +1205,13 @@ $(document).ready(function () {
                 success: function (data) {
                     $("#daftarProduk").empty();
                     $.each(data, function (key, item) {
-                        const formatter = new Intl.NumberFormat('id-ID', {
-                            style: 'currency',
-                            currency: 'IDR',
-                            minimumFractionDigits: 0 // Biasanya mata uang Rupiah tidak menggunakan desimal
+                        const formatter = new Intl.NumberFormat("id-ID", {
+                            style: "currency",
+                            currency: "IDR",
+                            minimumFractionDigits: 0, // Biasanya mata uang Rupiah tidak menggunakan desimal
                         });
-                
-                        const hargajual = formatter.format(item.harga_jual);  // Output: "Rp1.500.000"
+
+                        const hargajual = formatter.format(item.harga_jual); // Output: "Rp1.500.000"
                         $("#daftarProduk").append(
                             `
 							<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3">
