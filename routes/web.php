@@ -89,6 +89,8 @@ Route::middleware('auth')->group(function () {
     Route::get('getCount', [KeranjangController::class, 'getCount']);
     Route::delete('deleteAllKeranjang', [KeranjangController::class, 'deleteAllKeranjang']);
     Route::get('totalHargaKeranjang', [KeranjangController::class, 'totalHargaKeranjang']);
+    Route::get('getKodeKeranjang', [KeranjangController::class, 'getKodeKeranjang']);
+    Route::post('payment', [KeranjangController::class, 'payment']);
 
     Route::get('logout', [AuthController::class, 'logout']);
 });

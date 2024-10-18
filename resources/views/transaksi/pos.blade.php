@@ -42,7 +42,7 @@
                         <div class="head d-flex align-items-center justify-content-between w-100">
                             <div class>
                                 <h5>Order List</h5>
-                                <span>Transaction ID : #{{ $kodetransaksi }}</span>
+                                <span>Transaction ID : #<b id="transaksi_id">{{ $kodetransaksi }}</b></span>
                             </div>
                         </div>
                         <div class="customer-info block-section">

@@ -12,6 +12,7 @@ $(document).ready(function () {
             success: function (response) {
                 // Loop melalui setiap item yang dikembalikan dari server
                 $("#keranjang").empty();
+                kodekeranjang = "";
                 response.forEach((item) => {
                     const formatter = new Intl.NumberFormat("id-ID", {
                         style: "currency",
@@ -224,8 +225,70 @@ $(document).ready(function () {
 
         const pelanggan = document.querySelector("#pelanggan").value;
         const diskon = document.querySelector("#pilihDiskon").value;
+        const transaksi_id =
+            document.querySelector("#transaksi_id").textContent;
+        $.ajax({
+            url: "/getKodeKeranjang", // Endpoint di Laravel
+            type: "GET",
+            success: function (response) {
+                if (response.success) {
+                    $.ajax({
+                        url: "/totalHargaKeranjang", // Endpoint di Laravel
+                        type: "GET",
+                        success: function (items) {
+                            // Loop melalui setiap item yang dikembalikan dari server
+                            if (items.success) {
+                                const total = items.total;
+                                const subDiskon = diskon / 100;
+                                const TotalDiskon = total * subDiskon;
 
-        console.log([pelanggan, diskon]);
+                                const subTotalDiskon = total - TotalDiskon;
+                                $.ajax({
+                                    url: `/payment`, // Route Laravel
+                                    type: "POST",
+                                    data: {
+                                        _token: csrfToken, // Sertakan token CSRF
+                                        pelangganID: pelanggan,
+                                        diskonID: diskon,
+                                        transaksiID: transaksi_id,
+                                        kodeKeranjangID: response.kode,
+                                        produkID: [response.produk_id],
+                                        total: subTotalDiskon,
+                                    },
+                                    success: function (response) {
+                                        const successtoastExample =
+                                            document.getElementById(
+                                                "successToasts"
+                                            );
+                                        const toast = new bootstrap.Toast(
+                                            successtoastExample
+                                        );
+                                        toast.show();
+                                        loadItems();
+                                        getCount();
+                                        totalHargaKeranjang();
+                                        getDiscount();
+                                        return response;
+                                    },
+                                    error: function (xhr, status, error) {
+                                        console.error(
+                                            "Error fetching data:",
+                                            error
+                                        );
+                                    },
+                                });
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error fetching data:", error);
+                        },
+                    });
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error fetching data:", error);
+            },
+        });
     });
 
     // Variables declarations

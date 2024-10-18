@@ -7,6 +7,8 @@ use App\Models\Keranjang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Transaksi;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class KeranjangController extends Controller
@@ -132,5 +134,52 @@ class KeranjangController extends Controller
             ->sum(DB::raw('produk.harga_jual'));
 
         return response()->json(['success' => true, 'total' => $total]);
+    }
+
+    public function getKodeKeranjang()
+    {
+        $keranjang = Keranjang::where('status', 1)->where('users', Auth::user()->id)->first()->keranjang_id;
+
+        $produkID = Keranjang::select('produk_id')->where('keranjang_id', $keranjang)->get();
+
+        foreach ($produkID as $item) {
+            $item['produk_id'];
+        }
+
+        return response()->json(['success' => true, 'kode' => $keranjang, 'produk_id' => $produkID]);
+    }
+
+    public function payment(Request $request)
+    {
+        $produk = $request->produkID;
+
+        $payment = Transaksi::create([
+            'transaksi_id'  =>  $request->transaksiID,
+            'id_keranjang'  =>  $request->kodeKeranjangID,
+            'pelanggan_id'  =>  $request->pelangganID,
+            'diskon'        =>  $request->diskonID,
+            'tanggal'       =>  Carbon::today()->format('Y-m-d'),
+            'total'         =>  $request->total,
+            'users_id'      =>  Auth::user()->id,
+            'status'        =>  1,
+        ]);
+
+        if ($payment) {
+            Keranjang::where('status', 1)
+                ->where('users', Auth::user()->id)
+                ->where('keranjang_id', $request->kodeKeranjangID)
+                ->update([
+                    'status' => 2,
+                ]);
+
+            foreach ($produk as $value) {
+                Produk::where('id', $value)
+                    ->update([
+                        'status' => 2,
+                    ]);
+            }
+        }
+
+        return response()->json(['success' => true, 'Transaksi Berhasil']);
     }
 }

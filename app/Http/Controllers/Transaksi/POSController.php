@@ -45,7 +45,7 @@ class POSController extends Controller
             $nourut = "000001";
             $idtransaksi = $id . $tahun . $nourut;
         } else {
-            $nourut = substr($idTransaction->transaction_id, 6, 6) + 1;
+            $nourut = substr($idTransaction->transaksi_id, 6, 6) + 1;
             $nourut = str_pad($nourut, 6, "0", STR_PAD_LEFT);
 
             $idtransaksi = $id . $tahun . $nourut;

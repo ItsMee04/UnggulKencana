@@ -11,13 +11,13 @@ class Transaksi extends Model
     protected $table = 'transaksi';
     protected $fillable =
     [
-        'id_transaksi',
-        'keranjang_id',
+        'transaksi_id',
+        'id_keranjang',
         'pelanggan_id',
-        'discount',
+        'diskon',
         'tanggal',
         'total',
-        'users',
+        'users_id',
         'status'
     ];
 }
