@@ -5,55 +5,45 @@
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Main</h6>
                     <ul>
-                        <li class="@if (request()->route()->uri == 'dashboard') active @endif"><a href="/dashboard"><i
-                                    data-feather="grid"></i><span>Dashboard</span></a>
+                        <li><a href="/dashboard"><i data-feather="grid"></i><span>Dashboard</span></a>
                         </li>
                     </ul>
                 </li>
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Pegawai</h6>
                     <ul>
-                        <li class="@if (request()->route()->uri == 'pegawai') active @endif"><a href="/pegawai"><i
-                                    data-feather="user"></i><span>Pegawai</span></a>
+                        <li><a href="/pegawai"><i data-feather="user"></i><span>Pegawai</span></a>
                         </li>
-                        <li class="@if (request()->route()->uri == 'user') active @endif"><a href="/user"><i
-                                    data-feather="users"></i><span>Managemen Pengguna</span></a>
+                        <li><a href="/user"><i data-feather="users"></i><span>Managemen Pengguna</span></a>
                         </li>
                     </ul>
                 </li>
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Produk</h6>
                     <ul>
-                        <li class="@if (request()->route()->uri == 'jenis') active @endif"><a href="/jenis"><i
-                                    data-feather="tag"></i><span>Jenis Produk</span></a>
+                        <li><a href="/jenis"><i data-feather="tag"></i><span>Jenis Produk</span></a>
                         </li>
-                        <li class="@if (request()->route()->uri == 'produk' || request()->route()->uri == 'produk/{id}') active @endif"><a href="/produk"><i
-                                    data-feather="box"></i><span>Produk</span></a>
+                        <li><a href="/produk"><i data-feather="box"></i><span>Produk</span></a>
                         </li>
-                        <li class="@if (request()->route()->uri == 'nampan' || request()->route()->uri == 'nampan/{id}') active @endif"><a href="/nampan"><i
-                                    data-feather="codesandbox"></i><span>Nampan</span></a>
+                        <li><a href="/nampan"><i data-feather="codesandbox"></i><span>Nampan</span></a>
                         </li>
                     </ul>
                 </li>
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Pelanggan & Supplier</h6>
                     <ul>
-                        <li class="@if (request()->route()->uri == 'pelanggan') active @endif"><a href="/pelanggan"><i
-                                    data-feather="user"></i><span>Pelanggan</span></a></li>
-                        <li class="@if (request()->route()->uri == 'supplier') active @endif"><a href="supplier"><i
-                                    data-feather="users"></i><span>Suppliers</span></a></li>
+                        <li><a href="/pelanggan"><i data-feather="user"></i><span>Pelanggan</span></a></li>
+                        <li><a href="/supplier"><i data-feather="users"></i><span>Suppliers</span></a></li>
                     </ul>
                 </li>
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Transaksi</h6>
                     <ul>
-                        <li class="@if (request()->route()->uri == 'diskon') active @endif"><a href="/diskon"><i
-                                    data-feather="tag"></i><span>Diskon</span></a>
+                        <li><a href="/diskon"><i data-feather="tag"></i><span>Diskon</span></a>
                         </li>
-                        <li class="@if (request()->route()->uri == 'pos') active @endif"><a href="/pos"><i
-                                    data-feather="hard-drive"></i><span>POS</span></a>
+                        <li><a href="/pos"><i data-feather="hard-drive"></i><span>POS</span></a>
                         </li>
-                        <li><a href="department-grid.html"><i data-feather="users"></i><span>Departments</span></a>
+                        <li><a href="/order"><i data-feather="file-minus"></i><span>Order</span></a>
                         </li>
                         <li><a href="designation.html"><i data-feather="git-merge"></i><span>Designation</span></a>
                         </li>
@@ -593,3 +583,21 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Dapatkan URL saat ini
+    var currentUrl = window.location.pathname.split('/')[1]; // Ambil hanya bagian path utama
+
+    // Ambil semua elemen <a> di dalam sidebar-menu
+    var menuItems = document.querySelectorAll('#sidebar-menu a');
+
+    // Looping melalui setiap item menu
+    menuItems.forEach(function(menuItem) {
+        var menuItemUrl = menuItem.getAttribute('href').split('/')[1];
+
+        // Jika bagian utama URL saat ini cocok dengan href dari <a>
+        if (currentUrl === menuItemUrl) {
+            menuItem.parentElement.classList.add('active');
+        }
+    });
+</script>

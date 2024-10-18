@@ -12,9 +12,11 @@ use App\Http\Controllers\Supplier\SupplierController;
 use App\Http\Controllers\Transaksi\DiskonController;
 use App\Http\Controllers\Transaksi\KeranjangController;
 use App\Http\Controllers\Transaksi\POSController;
+use App\Http\Controllers\Transaksi\TransaksiController;
 use App\Http\Controllers\User\UserController;
 use App\Models\Keranjang;
 use App\Models\Role;
+use App\Models\Transaksi;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,6 +93,10 @@ Route::middleware('auth')->group(function () {
     Route::get('totalHargaKeranjang', [KeranjangController::class, 'totalHargaKeranjang']);
     Route::get('getKodeKeranjang', [KeranjangController::class, 'getKodeKeranjang']);
     Route::post('payment', [KeranjangController::class, 'payment']);
+
+    Route::get('order', [TransaksiController::class, 'index']);
+    Route::get('order/{id}', [TransaksiController::class, 'detailOrder']);
+    Route::get('confirmPayment/{id}', [TransaksiController::class, 'confirmPayment']);
 
     Route::get('logout', [AuthController::class, 'logout']);
 });

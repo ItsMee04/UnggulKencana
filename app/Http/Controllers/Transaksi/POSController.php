@@ -87,7 +87,7 @@ class POSController extends Controller
             $produk = Produk::where('status', 1)->get();
             return $produk->loadMissing('jenis');
         } else {
-            $produk = Produk::where('jenis_id', $id)->get();
+            $produk = Produk::where('jenis_id', $id)->where('status', 1)->get();
 
             return $produk->loadMissing('jenis');
         }

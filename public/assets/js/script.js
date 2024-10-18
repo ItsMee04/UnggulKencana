@@ -252,7 +252,7 @@ $(document).ready(function () {
                                         diskonID: diskon,
                                         transaksiID: transaksi_id,
                                         kodeKeranjangID: response.kode,
-                                        produkID: [response.produk_id],
+                                        produkID: response.produk_id,
                                         total: subTotalDiskon,
                                     },
                                     success: function (response) {
