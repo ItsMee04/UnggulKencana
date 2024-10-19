@@ -121,19 +121,19 @@
                                 <tr class="heading " style="background: #F3F2F7;">
                                     <td
                                         style="padding: 5px;vertical-align: middle;font-weight: 600;color: #5E5873;font-size: 14px;padding: 10px; ">
-                                        Product Name
+                                        Nama Item
                                     </td>
                                     <td
                                         style="padding: 5px;vertical-align: middle;font-weight: 600;color: #5E5873;font-size: 14px;padding: 10px; ">
-                                        Weight
+                                        Berat
                                     </td>
                                     <td
                                         style="padding: 5px;vertical-align: middle;font-weight: 600;color: #5E5873;font-size: 14px;padding: 10px; ">
-                                        Carat
+                                        Karat
                                     </td>
                                     <td
                                         style="padding: 5px;vertical-align: middle;font-weight: 600;color: #5E5873;font-size: 14px;padding: 10px; ">
-                                        Price
+                                        Harga
                                     </td>
                                     <td
                                         style="padding: 5px;vertical-align: middle;font-weight: 600;color: #5E5873;font-size: 14px;padding: 10px; ">
@@ -164,8 +164,13 @@
                                             {{ 'Rp.' . ' ' . number_format($item->total) }}
                                         </td>
                                         <td style="padding: 10px;vertical-align: top; ">
-                                            <a data-bs-toggle="tooltip" data-bs-placement="top" title="Print"
-                                                data-feather="printer"></a>
+
+                                            <a href="/NotaBarang/{{ $item->produk_id }}"><i data-feather="download"
+                                                    class="feather-rotate-ccw" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Print Nota"></i></a>
+
+                                            <a href="" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                title="Print" data-feather="printer"></a>
                                         </td>
                                     </tr>
                                 @endforeach

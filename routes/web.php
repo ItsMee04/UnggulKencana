@@ -1,22 +1,23 @@
 <?php
 
+use App\Models\Role;
+use App\Models\Keranjang;
+use App\Models\Transaksi;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Dashboard\DashboardController;
-use App\Http\Controllers\Pegawai\PegawaiController;
-use App\Http\Controllers\Pelanggan\PelangganController;
+use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Produk\JenisController;
 use App\Http\Controllers\Produk\NampanController;
 use App\Http\Controllers\Produk\ProdukController;
-use App\Http\Controllers\Supplier\SupplierController;
-use App\Http\Controllers\Transaksi\DiskonController;
-use App\Http\Controllers\Transaksi\KeranjangController;
+use App\Http\Controllers\Report\ReportController;
 use App\Http\Controllers\Transaksi\POSController;
+use App\Http\Controllers\Pegawai\PegawaiController;
+use App\Http\Controllers\Transaksi\DiskonController;
+use App\Http\Controllers\Supplier\SupplierController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Pelanggan\PelangganController;
+use App\Http\Controllers\Transaksi\KeranjangController;
 use App\Http\Controllers\Transaksi\TransaksiController;
-use App\Http\Controllers\User\UserController;
-use App\Models\Keranjang;
-use App\Models\Role;
-use App\Models\Transaksi;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,6 +98,8 @@ Route::middleware('auth')->group(function () {
     Route::get('order', [TransaksiController::class, 'index']);
     Route::get('order/{id}', [TransaksiController::class, 'detailOrder']);
     Route::get('confirmPayment/{id}', [TransaksiController::class, 'confirmPayment']);
+
+    Route::get('NotaBarang/{id}', [ReportController::class, 'cetakNotaBarang']);
 
     Route::get('logout', [AuthController::class, 'logout']);
 });
