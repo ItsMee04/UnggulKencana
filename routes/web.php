@@ -16,8 +16,10 @@ use App\Http\Controllers\Transaksi\DiskonController;
 use App\Http\Controllers\Supplier\SupplierController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Pelanggan\PelangganController;
+use App\Http\Controllers\Produk\ScanController;
 use App\Http\Controllers\Transaksi\KeranjangController;
 use App\Http\Controllers\Transaksi\TransaksiController;
+use App\Models\Produk;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +68,9 @@ Route::middleware('auth')->group(function () {
     Route::post('produk', [ProdukController::class, 'store']);
     Route::post('produk/{id}', [ProdukController::class, 'update']);
     Route::get('delete-produk/{id}', [ProdukController::class, 'delete']);
+
+    Route::get('scanner/{id}', [ProdukController::class, 'ScannerProduk']);
+    Route::get('scanner', [ScanController::class, 'index']);
 
     Route::get('pelanggan', [PelangganController::class, 'index']);
     Route::post('pelanggan', [PelangganController::class, 'store']);

@@ -27,6 +27,8 @@
                         </li>
                         <li><a href="/nampan"><i data-feather="codesandbox"></i><span>Nampan</span></a>
                         </li>
+                        <li><a href="/scanner"><i data-feather="camera"></i><span>Scan Barcode</span></a>
+                        </li>
                     </ul>
                 </li>
                 <li class="submenu-open">
@@ -45,74 +47,6 @@
                         </li>
                         <li><a href="/order"><i data-feather="file-minus"></i><span>Order</span></a>
                         </li>
-                        <li><a href="designation.html"><i data-feather="git-merge"></i><span>Designation</span></a>
-                        </li>
-                        <li><a href="shift.html"><i data-feather="shuffle"></i><span>Shifts</span></a></li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);"><i data-feather="book-open"></i><span>Attendence</span><span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="attendance-employee.html">Employee</a></li>
-                                <li><a href="attendance-admin.html">Admin</a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);"><i data-feather="calendar"></i><span>Leaves</span><span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="leaves-admin.html">Admin Leaves</a></li>
-                                <li><a href="leaves-employee.html">Employee Leaves</a></li>
-                                <li><a href="leave-types.html">Leave Types</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="holidays.html"><i data-feather="credit-card"></i><span>Holidays</span></a>
-                        </li>
-                        <li class="submenu">
-                            <a href="payroll-list.html"><i data-feather="dollar-sign"></i><span>Payroll</span><span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="payroll-list.html">Employee Salary</a></li>
-                                <li><a href="payslip.html">Payslip</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="submenu-open">
-                    <h6 class="submenu-hdr">User Management</h6>
-                    <ul>
-                        <li><a href="users.html"><i data-feather="user-check"></i><span>Users</span></a></li>
-                        <li><a href="roles-permissions.html"><i data-feather="shield"></i><span>Roles &
-                                    Permissions</span></a></li>
-                        <li><a href="delete-account.html"><i data-feather="lock"></i><span>Delete Account
-                                    Request</span></a></li>
-                    </ul>
-                </li>
-                <li class="submenu-open">
-                    <h6 class="submenu-hdr">Inventory</h6>
-                    <ul>
-                        <li><a href="product-list.html"><i data-feather="box"></i><span>Products</span></a>
-                        </li>
-                        <li><a href="add-product.html"><i data-feather="plus-square"></i><span>Create
-                                    Product</span></a></li>
-                        <li><a href="expired-products.html"><i data-feather="codesandbox"></i><span>Expired
-                                    Products</span></a></li>
-                        <li><a href="low-stocks.html"><i data-feather="trending-down"></i><span>Low
-                                    Stocks</span></a></li>
-                        <li><a href="category-list.html"><i data-feather="codepen"></i><span>Category</span></a>
-                        </li>
-                        <li><a href="sub-categories.html"><i data-feather="speaker"></i><span>Sub
-                                    Category</span></a></li>
-                        <li><a href="brand-list.html"><i data-feather="tag"></i><span>Brands</span></a></li>
-                        <li><a href="units.html"><i data-feather="speaker"></i><span>Units</span></a></li>
-                        <li><a href="varriant-attributes.html"><i data-feather="layers"></i><span>Variant
-                                    Attributes</span></a></li>
-                        <li><a href="warranty.html"><i data-feather="bookmark"></i><span>Warranties</span></a>
-                        </li>
-                        <li><a href="barcode.html"><i data-feather="align-justify"></i><span>Print
-                                    Barcode</span></a></li>
-                        <li><a href="qrcode.html"><i data-feather="maximize"></i><span>Print QR
-                                    Code</span></a>
-                        </li>
                     </ul>
                 </li>
                 <li class="submenu-open">
@@ -124,102 +58,6 @@
                                     Adjustment</span></a></li>
                         <li><a href="stock-transfer.html"><i data-feather="truck"></i><span>Stock
                                     Transfer</span></a></li>
-                    </ul>
-                </li>
-                <li class="submenu-open">
-                    <h6 class="submenu-hdr">Sales</h6>
-                    <ul>
-                        <li><a href="sales-list.html"><i data-feather="shopping-cart"></i><span>Sales</span></a>
-                        </li>
-                        <li><a href="invoice-report.html"><i data-feather="file-text"></i><span>Invoices</span></a>
-                        </li>
-                        <li><a href="sales-returns.html"><i data-feather="copy"></i><span>Sales
-                                    Return</span></a></li>
-                        <li><a href="quotation-list.html"><i data-feather="save"></i><span>Quotation</span></a>
-                        </li>
-                        <li><a href="pos.html"><i data-feather="hard-drive"></i><span>POS</span></a></li>
-                    </ul>
-                </li>
-                <li class="submenu-open">
-                    <h6 class="submenu-hdr">Promo</h6>
-                    <ul>
-                        <li><a href="coupons.html"><i data-feather="shopping-cart"></i><span>Coupons</span></a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="submenu-open">
-                    <h6 class="submenu-hdr">Purchases</h6>
-                    <ul>
-                        <li><a href="purchase-list.html"><i data-feather="shopping-bag"></i><span>Purchases</span></a>
-                        </li>
-                        <li><a href="purchase-order-report.html"><i data-feather="file-minus"></i><span>Purchase
-                                    Order</span></a></li>
-                        <li><a href="purchase-returns.html"><i data-feather="refresh-cw"></i><span>Purchase
-                                    Return</span></a></li>
-                    </ul>
-                </li>
-                <li class="submenu-open">
-                    <h6 class="submenu-hdr">Finance & Accounts</h6>
-                    <ul>
-                        <li class="submenu">
-                            <a href="javascript:void(0);"><i data-feather="file-text"></i><span>Expenses</span><span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="expense-list.html">Expenses</a></li>
-                                <li><a href="expense-category.html">Expense Category</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="submenu-open">
-                    <h6 class="submenu-hdr">Peoples</h6>
-                    <ul>
-                        <li><a href="customers.html"><i data-feather="user"></i><span>Customers</span></a>
-                        </li>
-                        <li><a href="suppliers.html"><i data-feather="users"></i><span>Suppliers</span></a>
-                        </li>
-                        <li><a href="store-list.html"><i data-feather="home"></i><span>Stores</span></a></li>
-                        <li><a href="warehouse.html"><i data-feather="archive"></i><span>Warehouses</span></a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="submenu-open">
-                    <h6 class="submenu-hdr">HRM</h6>
-                    <ul>
-                        <li><a href="employees-grid.html"><i data-feather="user"></i><span>Employees</span></a>
-                        </li>
-                        <li><a href="department-grid.html"><i data-feather="users"></i><span>Departments</span></a>
-                        </li>
-                        <li><a href="designation.html"><i data-feather="git-merge"></i><span>Designation</span></a>
-                        </li>
-                        <li><a href="shift.html"><i data-feather="shuffle"></i><span>Shifts</span></a></li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);"><i data-feather="book-open"></i><span>Attendence</span><span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="attendance-employee.html">Employee</a></li>
-                                <li><a href="attendance-admin.html">Admin</a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);"><i data-feather="calendar"></i><span>Leaves</span><span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="leaves-admin.html">Admin Leaves</a></li>
-                                <li><a href="leaves-employee.html">Employee Leaves</a></li>
-                                <li><a href="leave-types.html">Leave Types</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="holidays.html"><i data-feather="credit-card"></i><span>Holidays</span></a>
-                        </li>
-                        <li class="submenu">
-                            <a href="payroll-list.html"><i data-feather="dollar-sign"></i><span>Payroll</span><span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="payroll-list.html">Employee Salary</a></li>
-                                <li><a href="payslip.html">Payslip</a></li>
-                            </ul>
-                        </li>
                     </ul>
                 </li>
                 <li class="submenu-open">
@@ -262,8 +100,7 @@
                     <ul>
                         <li><a href="profile.html"><i data-feather="user"></i><span>Profile</span></a></li>
                         <li class="submenu">
-                            <a href="javascript:void(0);"><i
-                                    data-feather="shield"></i><span>Authentication</span><span
+                            <a href="javascript:void(0);"><i data-feather="shield"></i><span>Authentication</span><span
                                     class="menu-arrow"></span></a>
                             <ul>
                                 <li class="submenu submenu-two"><a href="javascript:void(0);">Login<span

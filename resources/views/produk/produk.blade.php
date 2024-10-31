@@ -70,14 +70,16 @@
                                         <td>{{ $loop->iteration }}.</td>
                                         <td>
                                             {!! DNS2D::getBarcodeSVG($item->kodeproduk, 'QRCODE', 2, 2) !!}
-                                            <span>{{ $item->kodeproduk }}</span>
+                                            <a href="scanner/{{ $item->kodeproduk }}">
+                                                <span>{{ $item->kodeproduk }}</span>
+                                            </a>
                                         </td>
                                         <td>
                                             <div class="productimgname">
                                                 <a href="javascript:void(0);" class="product-img stock-img">
                                                     <img src="{{ asset('storage/Image/' . $item->image) }}" alt="product">
                                                 </a>
-                                                <a href="javascript:void(0);">{{ $item->nama }} </a>
+                                                {{ $item->nama }}
                                             </div>
                                         </td>
                                         <td>{{ $item->berat }} / grams</td>

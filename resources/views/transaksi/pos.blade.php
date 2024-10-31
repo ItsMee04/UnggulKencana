@@ -14,7 +14,7 @@
                                     <img src="assets/img/categories/category-01.png" alt="Categories">
                                 </a>
                                 <h6><a href="javascript:void(0);">All Categories</a></h6>
-                                <span>80 Items</span>
+                                <span>{{ $produk->where('status', 1)->count() }}</span>
                             </li>
                             @foreach ($jenis as $item)
                                 <li id="{{ $item->id }}">
@@ -133,8 +133,8 @@
                     <div class="modal-body text-start">
                         <div class="mb-3">
                             <label class="form-label">Kode Pelanggan</label>
-                            <input type="text" name="kodepelanggan" value="{{ $kodepelanggan }}" class="form-control"
-                                readonly>
+                            <input type="text" name="kodepelanggan" value="{{ $kodepelanggan }}"
+                                class="form-control" readonly>
                         </div>
                         <div class="row">
                             <div class="col-6 mb-3">

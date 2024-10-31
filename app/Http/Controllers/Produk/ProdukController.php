@@ -190,4 +190,11 @@ class ProdukController extends Controller
 
         return redirect('produk/' . $produk->nampan_id)->with('success-message', 'Data Success Dihapus !');
     }
+
+    public function ScannerProduk($id)
+    {
+        $produk = Produk::where('kodeproduk', $id)->get();
+
+        return view('produk.scan-produk', ['produk' => $produk]);
+    }
 }

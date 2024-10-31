@@ -19,23 +19,17 @@
                         <a data-bs-toggle="tooltip" data-bs-placement="top" title="Collapse" id="collapse-header"><i
                                 data-feather="chevron-up" class="feather-chevron-up"></i></a>
                     </li>
+                    <li>
+                        <a href="/print-order-transaction/{{ $transaksi->transaksi_id }}" target="__blank"><i
+                                data-feather="printer" class="feather-rotate-ccw" data-bs-toggle="tooltip"
+                                data-bs-placement="top" title="Print Nota"></i></a>
+                    </li>
                 </ul>
             </div>
             <div class="card">
                 <div class="card-body">
                     <div class="card-sales-split">
                         <h2>Detail Transaction : {{ $transaksi->transaksi_id }}</h2>
-                        <ul>
-                            <li>
-                                <a href="/print-order-transaction/{{ $transaksi->transaksi_id }}" target="__blank"><i
-                                        data-feather="printer" class="feather-rotate-ccw" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" title="Print Nota"></i></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);"><i data-feather="download" class="feather-rotate-ccw"
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Print Nota"></i></a>
-                            </li>
-                        </ul>
                     </div>
                     <div class="invoice-box table-height"
                         style="max-width: 1600px;width:100%;overflow: auto;margin:15px auto;padding: 0;font-size: 14px;line-height: 24px;color: #555;">
@@ -164,13 +158,12 @@
                                             {{ 'Rp.' . ' ' . number_format($item->total) }}
                                         </td>
                                         <td style="padding: 10px;vertical-align: top; ">
-
-                                            <a href="/NotaBarang/{{ $item->produk_id }}"><i data-feather="download"
-                                                    class="feather-rotate-ccw" data-bs-toggle="tooltip"
-                                                    data-bs-placement="top" title="Print Nota"></i></a>
-
-                                            <a href="" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                title="Print" data-feather="printer"></a>
+                                            <a href="/NotaBarang/{{ $item->produk_id }}" target="__blank">
+                                                <i data-feather="printer" class="feather-rotate-ccw"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="Cetak Surat Barang">
+                                                </i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
