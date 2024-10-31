@@ -1,0 +1,274 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="CetakSuratBarang" language="java" columnCount="1" pageWidth="595" pageHeight="283" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b26465c1-d69c-440e-9e35-18937fe5d1b4">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="cm"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="LocalDatabase"/>
+	<parameter name="produk_id" class="java.lang.String"/>
+	<query language="SQL"><![CDATA[SELECT pl.nama AS PelangganNama ,pl.alamat AS PelangganAlamat, pl.kontak AS PelangganKontak, tr.transaksi_id AS TransaksiKode, pg.nama AS PegawaiNama, pg.nip AS PegawaiNIP, pr.kodeproduk AS ProdukKode, pr.nama AS ProdukNama, ROUND(pr.berat,5) AS ProdukBerat, pr.karat AS ProdukKarat, pr.harga_jual AS ProdukHarga, CONCAT('http://127.0.0.1:8000/storage/Image/', pr.image) AS ProdukGambar, kr.total AS KeranjangTotal  FROM keranjang kr 
+JOIN transaksi tr ON kr.keranjang_id=tr.id_keranjang
+JOIN pelanggan pl ON tr.pelanggan_id=pl.id
+JOIN produk pr ON kr.produk_id=pr.id
+JOIN users us ON tr.users_id=us.id
+JOIN pegawai pg ON us.pegawai_id=pg.id
+
+WHERE pr.id =  $P{produk_id} ]]></query>
+	<field name="PelangganNama" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nama"/>
+		<property name="com.jaspersoft.studio.field.label" value="PelangganNama"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pelanggan"/>
+	</field>
+	<field name="PelangganAlamat" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="alamat"/>
+		<property name="com.jaspersoft.studio.field.label" value="PelangganAlamat"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pelanggan"/>
+	</field>
+	<field name="PelangganKontak" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="kontak"/>
+		<property name="com.jaspersoft.studio.field.label" value="PelangganKontak"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pelanggan"/>
+	</field>
+	<field name="TransaksiKode" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="transaksi_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="TransaksiKode"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="transaksi"/>
+	</field>
+	<field name="PegawaiNama" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nama"/>
+		<property name="com.jaspersoft.studio.field.label" value="PegawaiNama"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pegawai"/>
+	</field>
+	<field name="PegawaiNIP" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nip"/>
+		<property name="com.jaspersoft.studio.field.label" value="PegawaiNIP"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pegawai"/>
+	</field>
+	<field name="ProdukKode" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="kodeproduk"/>
+		<property name="com.jaspersoft.studio.field.label" value="ProdukKode"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produk"/>
+	</field>
+	<field name="ProdukNama" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nama"/>
+		<property name="com.jaspersoft.studio.field.label" value="ProdukNama"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produk"/>
+	</field>
+	<field name="ProdukBerat" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="ProdukBerat"/>
+		<property name="com.jaspersoft.studio.field.label" value="ProdukBerat"/>
+	</field>
+	<field name="ProdukKarat" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="karat"/>
+		<property name="com.jaspersoft.studio.field.label" value="ProdukKarat"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produk"/>
+	</field>
+	<field name="ProdukHarga" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="harga_jual"/>
+		<property name="com.jaspersoft.studio.field.label" value="ProdukHarga"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produk"/>
+	</field>
+	<field name="ProdukGambar" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ProdukGambar"/>
+		<property name="com.jaspersoft.studio.field.label" value="ProdukGambar"/>
+	</field>
+	<field name="KeranjangTotal" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="total"/>
+		<property name="com.jaspersoft.studio.field.label" value="KeranjangTotal"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="keranjang"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="48" splitType="Stretch">
+		<element kind="staticText" uuid="3db744db-e3b8-48ad-91f7-8baffa1b6d0c" x="355" y="0" width="56" height="12" fontSize="9.0">
+			<text><![CDATA[Purwokerto]]></text>
+		</element>
+		<element kind="textField" uuid="34548c6f-e427-4db0-b76a-0325861e83f2" x="411" y="0" width="138" height="12" fontName="&#xd;&#xa;SansSerif" fontSize="9.0" pattern="MMMMM dd, yyyy" bold="true">
+			<expression><![CDATA[", "+new java.text.SimpleDateFormat("dd MMMM yyyy", new java.util.Locale("id", "ID")).format(new java.util.Date())]]></expression>
+		</element>
+		<element kind="staticText" uuid="ff1892c9-6904-453b-aea4-d612c4e1f876" x="355" y="12" width="56" height="12" fontSize="9.0">
+			<text><![CDATA[Mr/Mrs]]></text>
+		</element>
+		<element kind="textField" uuid="136e0a1f-896e-4bc9-9eb0-b33157436ebd" x="411" y="12" width="138" height="12" fontName="&#xd;&#xa;SansSerif" fontSize="9.0" pattern="MMMMM dd, yyyy" bold="true">
+			<expression><![CDATA[": "+$F{PelangganNama}]]></expression>
+		</element>
+		<element kind="staticText" uuid="aeafd481-cd63-4d00-ba30-1cde4a85a076" x="355" y="24" width="56" height="12" fontSize="9.0">
+			<text><![CDATA[Alamat]]></text>
+		</element>
+		<element kind="textField" uuid="60ee7750-0aae-48da-afd4-a68ce0093e93" x="411" y="24" width="138" height="12" fontName="&#xd;&#xa;SansSerif" fontSize="9.0" pattern="MMMMM dd, yyyy" bold="true">
+			<expression><![CDATA[": "+$F{PelangganAlamat}]]></expression>
+		</element>
+		<element kind="staticText" uuid="78265427-0677-46d2-939c-b230cd86a6c5" x="355" y="36" width="56" height="12" fontSize="9.0">
+			<text><![CDATA[Telp]]></text>
+		</element>
+		<element kind="textField" uuid="94938aa7-7687-4d7d-8aec-7c4f56cc52cc" x="411" y="36" width="138" height="12" fontName="&#xd;&#xa;SansSerif" fontSize="9.0" pattern="MMMMM dd, yyyy" bold="true">
+			<expression><![CDATA[": "+$F{PelangganKontak}]]></expression>
+		</element>
+	</title>
+	<pageHeader height="26" splitType="Stretch">
+		<element kind="staticText" uuid="06751db7-7bfc-4db3-b521-5492040f8013" x="0" y="0" width="60" height="12" fontSize="9.0">
+			<text><![CDATA[Sales]]></text>
+			<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+		</element>
+		<element kind="staticText" uuid="8e2cea94-210c-4b1a-bc97-041c9e1fe219" x="0" y="12" width="60" height="14" fontSize="9.0">
+			<text><![CDATA[No Transaksi]]></text>
+		</element>
+		<element kind="textField" uuid="dc0609bb-334d-49cf-9135-d0d0d05ed19a" x="60" y="0" width="100" height="12" fontSize="9.0" bold="true">
+			<expression><![CDATA[": "+$F{PegawaiNama}]]></expression>
+		</element>
+		<element kind="textField" uuid="5566b0c4-74b3-4b61-bc60-e1964b050e01" x="60" y="12" width="100" height="14" fontSize="9.0" bold="true">
+			<expression><![CDATA[": "+$F{TransaksiKode}]]></expression>
+		</element>
+	</pageHeader>
+	<columnHeader height="22" splitType="Stretch">
+		<element kind="staticText" uuid="8c1486fc-4861-4e6c-8d98-f0933ecefdcb" mode="Opaque" x="0" y="0" width="85" height="21" backcolor="#8C8989" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[KODE]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c6de0177-e950-4718-885a-50e1505f304e"/>
+			<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+			<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+			<box leftPadding="5">
+				<pen lineColor="#FFFFFF"/>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="048a1085-d105-45d4-9135-b456c90e8b78" mode="Opaque" x="85" y="0" width="85" height="21" backcolor="#8C8989" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[NAMA]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e254b5ca-ee3b-4986-9486-2e762f5ffef8"/>
+			<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+			<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+			<box leftPadding="5">
+				<pen lineColor="#FFFFFF"/>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="c117ec91-9e7b-4d9b-8087-061874196474" mode="Opaque" x="170" y="0" width="85" height="21" backcolor="#8C8989" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[BERAT]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e64c1254-b0c0-4bfe-a1bd-b69eade1535b"/>
+			<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+			<box leftPadding="5">
+				<pen lineColor="#FFFFFF"/>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="e97205bf-d8d7-44fc-b347-0baae037653f" mode="Opaque" x="255" y="0" width="85" height="21" backcolor="#8C8989" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[KARAT]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9185b818-fb88-4602-bfb2-810ea7284a62"/>
+			<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+			<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+			<box leftPadding="5">
+				<pen lineColor="#FFFFFF"/>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="3423d2b1-4e93-41c3-b947-c9ec359f45dc" mode="Opaque" x="340" y="0" width="85" height="21" backcolor="#8C8989" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[HARGA]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7ce8dd85-1a82-4756-95c8-39640d2a5df5"/>
+			<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+			<box leftPadding="5">
+				<pen lineColor="#FFFFFF"/>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="1a9e89b9-bfb3-4b62-aa2b-53d630901589" x="425" y="0" width="124" height="21" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[SURAT KETERANGAN]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7ce8dd85-1a82-4756-95c8-39640d2a5df5"/>
+			<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+			<box leftPadding="5">
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="41" splitType="Stretch">
+			<element kind="textField" uuid="1583fc68-ef86-4a0d-a5af-b9703e9695ff" x="0" y="-1" width="85" height="42" fontSize="9.0" vTextAlign="Middle">
+				<expression><![CDATA[$F{ProdukKode}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c6de0177-e950-4718-885a-50e1505f304e"/>
+				<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="1716f0d3-163b-4e56-b09a-fe546030ea4c" x="85" y="-1" width="85" height="42" fontSize="9.0" vTextAlign="Middle">
+				<expression><![CDATA[$F{ProdukNama}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e254b5ca-ee3b-4986-9486-2e762f5ffef8"/>
+				<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="2bba15d3-21f2-4474-b360-6410a27d476d" x="170" y="-1" width="85" height="42" fontSize="9.0" vTextAlign="Middle">
+				<expression><![CDATA[$F{ProdukBerat}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e64c1254-b0c0-4bfe-a1bd-b69eade1535b"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="48280d27-3123-40be-920a-1068f555c074" x="255" y="-1" width="85" height="42" fontSize="9.0" vTextAlign="Middle">
+				<expression><![CDATA[$F{ProdukKarat}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9185b818-fb88-4602-bfb2-810ea7284a62"/>
+				<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="783685f3-6e57-45c1-87e0-fff14c5ac376" x="340" y="-1" width="85" height="42" fontSize="9.0" vTextAlign="Middle">
+				<expression><![CDATA[$F{ProdukHarga}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7ce8dd85-1a82-4756-95c8-39640d2a5df5"/>
+				<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="image" uuid="f441ad0e-1818-4986-a897-e65caf5a13ca" x="425" y="0" width="124" height="40" hImageAlign="Center" vImageAlign="Middle">
+				<expression><![CDATA[new java.net.URL($F{ProdukGambar})]]></expression>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</detail>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>

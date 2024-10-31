@@ -92,7 +92,6 @@ class NampanController extends Controller
         $credentials = $request->validate([
             'jenis'         => 'required',
             'nampan'        => 'required',
-            'tanggal'       => 'required',
             'status'        => 'required'
         ], $messages);
 
@@ -108,7 +107,6 @@ class NampanController extends Controller
             ->update([
                 'jenis_id'  =>  $request->jenis,
                 'nampan'    =>  $request->nampan,
-                'tanggal'   =>  $request->tanggal,
                 'status'    =>  $request->status,
             ]);
 

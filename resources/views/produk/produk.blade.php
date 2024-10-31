@@ -95,6 +95,9 @@
                                                     href="#modaledit{{ $item->id }}">
                                                     <i data-feather="edit" class="feather-edit"></i>
                                                 </a>
+                                                <a href="downloadBarcode/{{ $item->id }}">
+                                                    <i data-feather="download" class="feather-edit"></i>
+                                                </a>
                                                 <a class="me-2 p-2"
                                                     onclick="confirm_modal('/delete-produk/{{ $item->id }}');"
                                                     data-bs-toggle="modal" data-bs-target="#modal_delete">

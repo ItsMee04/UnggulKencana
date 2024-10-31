@@ -25,7 +25,8 @@ $(document).ready(function () {
                                 successtoastExample
                             );
                             toast.show();
-                            window.location = "products/" + id;
+
+                            window.location = "scanner/" + id;
                         } else {
                             const dangertoastExample =
                                 document.getElementById("dangerToastScan");

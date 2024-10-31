@@ -17,6 +17,7 @@ use App\Http\Controllers\Supplier\SupplierController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Pelanggan\PelangganController;
 use App\Http\Controllers\Produk\ScanController;
+use App\Http\Controllers\stok\StokController;
 use App\Http\Controllers\Transaksi\KeranjangController;
 use App\Http\Controllers\Transaksi\TransaksiController;
 use App\Models\Produk;
@@ -68,9 +69,11 @@ Route::middleware('auth')->group(function () {
     Route::post('produk', [ProdukController::class, 'store']);
     Route::post('produk/{id}', [ProdukController::class, 'update']);
     Route::get('delete-produk/{id}', [ProdukController::class, 'delete']);
+    Route::get('downloadBarcode/{id}', [ProdukController::class, 'downloadBarcode']);
 
     Route::get('scanner/{id}', [ProdukController::class, 'ScannerProduk']);
     Route::get('scanner', [ScanController::class, 'index']);
+    Route::post('scanqr', [ScanController::class, 'scanqr']);
 
     Route::get('pelanggan', [PelangganController::class, 'index']);
     Route::post('pelanggan', [PelangganController::class, 'store']);
@@ -105,6 +108,9 @@ Route::middleware('auth')->group(function () {
     Route::get('confirmPayment/{id}', [TransaksiController::class, 'confirmPayment']);
 
     Route::get('NotaBarang/{id}', [ReportController::class, 'cetakNotaBarang']);
+
+    Route::get('stok', [StokController::class, 'index']);
+    Route::post('stok', [StokController::class, 'cekstok']);
 
     Route::get('logout', [AuthController::class, 'logout']);
 });

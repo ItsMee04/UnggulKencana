@@ -52,7 +52,7 @@
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Stock</h6>
                     <ul>
-                        <li><a href="manage-stocks.html"><i data-feather="package"></i><span>Manage
+                        <li><a href="/stok"><i data-feather="package"></i><span>Manage
                                     Stock</span></a></li>
                         <li><a href="stock-adjustment.html"><i data-feather="clipboard"></i><span>Stock
                                     Adjustment</span></a></li>

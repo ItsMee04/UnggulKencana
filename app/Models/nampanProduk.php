@@ -27,4 +27,9 @@ class nampanProduk extends Model
     {
         return $this->belongsTo(produk::class);
     }
+
+    public function nampan(): BelongsTo
+    {
+        return $this->belongsTo(Nampan::class);
+    }
 }
