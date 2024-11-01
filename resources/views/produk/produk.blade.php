@@ -95,7 +95,7 @@
                                                     href="#modaledit{{ $item->id }}">
                                                     <i data-feather="edit" class="feather-edit"></i>
                                                 </a>
-                                                <a href="downloadBarcode/{{ $item->id }}">
+                                                <a class="me-2 p-2" href="downloadBarcode/{{ $item->id }}">
                                                     <i data-feather="download" class="feather-edit"></i>
                                                 </a>
                                                 <a class="me-2 p-2"

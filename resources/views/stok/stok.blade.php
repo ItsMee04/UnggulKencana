@@ -22,7 +22,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="card  col-6">
+            <div class="card col-6">
                 <div class="card-header">
                     <h5 class="card-title">
                         <marquee>STOK</marquee>
@@ -49,26 +49,14 @@
 
             <div class="card table-list-card">
                 <div class="card-body pb-0">
-                    <div class="table-top">
-                        <div class="input-blocks search-set mb-0">
-                            <div class="search-input">
-                                <a href class="btn btn-searchset"><i data-feather="search" class="feather-search"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="table-responsive">
                         <table class="table datanew">
                             <thead>
                                 <tr>
                                     <th>No.</th>
                                     <th>Nampan</th>
-                                    <th>Produk</th>
-                                    <th>Tanggal</th>
-                                    <th>Kode Produk</th>
-                                    <th>Nama Produk</th>
-                                    <th>Harga Jual</th>
-                                    <th>Keterangan</th>
+                                    <th>Total Produk</th>
+                                    <th>Total Berat</th>
                                 </tr>
                             </thead>
                             <tbody id="table_body">

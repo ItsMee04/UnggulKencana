@@ -207,4 +207,7 @@
             </div>
         </div>
     </div>
+
+    <script src="{{ asset('assets') }}/js/jquery-3.7.1.min.js" type="text/javascript"></script>
+    <script src="{{ asset('assets') }}/js/pos.js" type="text/javascript"></script>
 @endsection

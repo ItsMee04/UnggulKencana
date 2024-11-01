@@ -25,14 +25,13 @@ $(document).ready(function () {
                                     return meta.row + 1; // Menambahkan nomor urut otomatis
                                 },
                             },
-                            { data: "nampan.nampan" }, // Nama Nampan dari relasi
-                            { data: "produk.nama" }, // Nama Produk dari relasi
-                            { data: "tanggal" }, // Tanggal dari data utama
-                            { data: "produk.kodeproduk" }, // Kode Produk dari relasi produk
-                            { data: "produk.nama" }, // Nama Produk dari relasi produk
-                            { data: "produk.harga_jual" }, // Harga Jual dari relasi produk
-                            { data: "produk.keterangan" }, // Keterangan Produk dari relasi produk
+                            { data: "nampan" }, // Nama Nampan dari relasi
+                            { data: "total_produk"}, // Tanggal dari data utama
+                            { data: "total_berat" }
                         ],
+                        autoWidth: false,   // Mengatur agar DataTable tidak otomatis mengatur lebar kolom
+                        responsive: true,   // Agar tabel responsif
+                        width: "100%",      // Menentukan lebar tabel
                         destroy: true, // Menambahkan opsi ini jika tabel sebelumnya sudah diinisialisasi
                     });
                 } else {

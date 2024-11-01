@@ -55,7 +55,7 @@
                                             @if ($item->status == 1)
                                                 <h6><span class="badge badge-bgsuccess">Ready</span></h6>
                                             @else
-                                                <span class="badge badge-bgdanger">Sold</span>
+                                                <h6><span class="badge badge-bgdanger">Sold</span></h6>
                                             @endif
                                         </li>
                                     @endforeach
