@@ -259,6 +259,7 @@ $(document).ready(function () {
                                             successtoastExample
                                         );
                                         toast.show();
+
                                         loadItems();
                                         getCount();
                                         totalHargaKeranjang();
@@ -285,7 +286,7 @@ $(document).ready(function () {
             },
         });
     });
-    
+
     $("ul.tabs li").click(function () {
         var $this = $(this);
         var $theTab = $(this).attr("id");

@@ -95,10 +95,15 @@
                                                                     style="vertical-align: inherit;font-size: 14px;color:#ff0000;font-weight: 400;">
                                                                     <span class="badge bg-danger">UN PAID</span>
                                                                 </font>
-                                                            @else
+                                                            @elseif($transaksi->status == 2)
                                                                 <font
                                                                     style="vertical-align: inherit;font-size: 14px;color:#2E7D32;font-weight: 400;">
                                                                     <span class="badge bg-success">PAID</span>
+                                                                </font>
+                                                            @else
+                                                                <font
+                                                                    style="vertical-align: inherit;font-size: 14px;color:#ff0000;font-weight: 400;">
+                                                                    <span class="badge bg-danger"> CANCELED</span>
                                                                 </font>
                                                             @endif
                                                         </font><br>
@@ -157,14 +162,16 @@
                                         <td style="padding: 10px;vertical-align: top; ">
                                             {{ 'Rp.' . ' ' . number_format($item->total) }}
                                         </td>
-                                        <td style="padding: 10px;vertical-align: top; ">
-                                            <a href="/NotaBarang/{{ $item->produk_id }}" target="__blank">
-                                                <i data-feather="printer" class="feather-rotate-ccw"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="Cetak Surat Barang">
-                                                </i>
-                                            </a>
-                                        </td>
+                                        @if ($item->status != 0)
+                                            <td style="padding: 10px;vertical-align: top; ">
+                                                <a href="/NotaBarang/{{ $item->produk_id }}" target="__blank">
+                                                    <i data-feather="printer" class="feather-rotate-ccw"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        title="Cetak Surat Barang">
+                                                    </i>
+                                                </a>
+                                            </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>

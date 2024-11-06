@@ -34,7 +34,7 @@ class KeranjangController extends Controller
 
     public function cekItem(Request $request, $id)
     {
-        $item = Keranjang::where('produk_id', $request->id)->first();
+        $item = Keranjang::where('produk_id', $request->id)->where('status', 1)->first();
 
         if ($item) {
             return response()->json(['status' => 'error', 'message' => 'Data sudah ada di database!'], 400);
@@ -72,36 +72,33 @@ class KeranjangController extends Controller
         $keranjangID = Keranjang::latest('keranjang_id')->first();
 
         if ($credentials) {
-            if (DB::table('keranjang')->where('produk_id', $id)->exists()) {
-                return redirect('pos')->with('errors-message', 'Data Produk Sudah Ada !');
-            } else {
-                if ($keranjangID == null) {
-                    Keranjang::create([
-                        'keranjang_id'  =>  $code,
-                        'produk_id'     =>  $id,
-                        'total'         =>  $total,
-                        'status'        =>  1,
-                        'users'         =>  Auth::user()->id,
-                    ]);
-                } elseif ($keranjangID->status == 1) {
 
-                    Keranjang::create([
-                        'keranjang_id'  =>  $keranjangID->keranjang_id,
-                        'produk_id'     =>  $id,
-                        'total'         =>  $total,
-                        'status'        =>  1,
-                        'users'         =>  Auth::user()->id,
-                    ]);
-                } elseif ($keranjangID->status == 2) {
+            if ($keranjangID == null) {
+                Keranjang::create([
+                    'keranjang_id'  =>  $code,
+                    'produk_id'     =>  $id,
+                    'total'         =>  $total,
+                    'status'        =>  1,
+                    'users'         =>  Auth::user()->id,
+                ]);
+            } elseif ($keranjangID->status == 1) {
 
-                    Keranjang::create([
-                        'keranjang_id'  =>  $code,
-                        'produk_id'     =>  $id,
-                        'total'         =>  $total,
-                        'status'        =>  1,
-                        'users'         =>  Auth::user()->id,
-                    ]);
-                }
+                Keranjang::create([
+                    'keranjang_id'  =>  $keranjangID->keranjang_id,
+                    'produk_id'     =>  $id,
+                    'total'         =>  $total,
+                    'status'        =>  1,
+                    'users'         =>  Auth::user()->id,
+                ]);
+            } elseif ($keranjangID->status == 2) {
+
+                Keranjang::create([
+                    'keranjang_id'  =>  $code,
+                    'produk_id'     =>  $id,
+                    'total'         =>  $total,
+                    'status'        =>  1,
+                    'users'         =>  Auth::user()->id,
+                ]);
             }
         }
 

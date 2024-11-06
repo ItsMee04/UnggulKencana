@@ -24,7 +24,8 @@ class NampanController extends Controller
 
     public function show($id)
     {
-        $produk = Produk::where('status', 1)->get();
+        $nampanJenis = Nampan::where('id', $id)->first()->jenis_id;
+        $produk = Produk::where('status', 1)->where('jenis_id', $nampanJenis)->get();
         $nampan = nampanProduk::where('nampan_id', $id)->get();
         $nampanId = $id;
         return view('produk.detail-produk', ['produk' => $produk, 'nampan' => $nampan, 'nampanID' => $nampanId]);

@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index']);
 
     Route::get('pegawai', [PegawaiController::class, 'index']);
+    Route::get('pegawai/fetchData', [PegawaiController::class, 'fetchData']);
     Route::post('pegawai', [PegawaiController::class, 'store']);
     Route::post('pegawai/{id}', [PegawaiController::class, 'update']);
     Route::get('delete-pegawai/{id}', [PegawaiController::class, 'delete']);
@@ -106,6 +107,7 @@ Route::middleware('auth')->group(function () {
     Route::get('order', [TransaksiController::class, 'index']);
     Route::get('order/{id}', [TransaksiController::class, 'detailOrder']);
     Route::get('confirmPayment/{id}', [TransaksiController::class, 'confirmPayment']);
+    Route::delete('cancelPayment/{id}', [TransaksiController::class, 'cancelPayment']);
 
     Route::get('NotaBarang/{id}', [ReportController::class, 'cetakNotaBarang']);
 

@@ -62,8 +62,10 @@
                                         <td>
                                             @if ($item->status == 1)
                                                 <span class="badge bg-danger"> Unpaid</span>
-                                            @else
+                                            @elseif($item->status == 2)
                                                 <span class="badge bg-success"> Paid</span>
+                                            @else
+                                                <span class="badge bg-danger"> canceled</span>
                                             @endif
                                         </td>
                                         <td class="action-table-data">
@@ -77,6 +79,9 @@
                                                         onclick="confirm_modal('confirmPayment/{{ $item->id }}');"
                                                         data-bs-toggle="modal" data-bs-target="#modal_confirm">
                                                         <i data-feather="check-circle" class="feather-trash-2"></i>
+                                                    </a>
+                                                    <a class="me-2 p-2 cancelPayment" data-id="{{ $item->id }}">
+                                                        <i data-feather="x-circle" class="feather-trash-2"></i>
                                                     </a>
                                                 @else
                                                     <a class="me-2 p-2 mb-0" data-bs-effect="effect-sign"
@@ -116,6 +121,26 @@
         </div>
     </div>
 
+    <!-- Modal Popup untuk delete-->
+    <div class="modal custom-modal fade" id="modalCancelPayment">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-body p-4 text-center">
+                    <div class="icon-head">
+                        <a href="javascript:void(0);">
+                            <i data-feather="x-circle" class="feather-40"></i>
+                        </a>
+                    </div>
+                    <h4>Payment Cancel</h4>
+                    <p class="mb-0">Confirm Cancel this payment ?</p>
+                    <div class="modal-footer d-sm-flex justify-content-between">
+                        <a id="cancelPaymentConfirm" class="btn btn-danger flex-fill" data-dismiss="modal"> Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Javascript untuk popup modal Delete-->
     <script type="text/javascript">
         function confirm_modal(delete_url) {
@@ -125,4 +150,7 @@
             document.getElementById('confirm').setAttribute('href', delete_url);
         }
     </script>
+
+    <script src="{{ asset('assets') }}/js/jquery-3.7.1.min.js" type="text/javascript"></script>
+    <script src="{{ asset('assets') }}/js/order.js" type="text/javascript"></script>
 @endsection
